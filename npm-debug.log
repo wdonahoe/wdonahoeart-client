@@ -1,0 +1,88 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'grunt-contrib-bootstrap',
+1 verbose cli   '--save-dev' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.39
+4 verbose node symlink /usr/bin/node
+5 warn package.json wdonahoeart-client@0.1.0 No repository field.
+6 verbose readDependencies using package.json deps
+7 verbose cache add [ 'grunt-contrib-bootstrap', null ]
+8 verbose cache add name=undefined spec="grunt-contrib-bootstrap" args=["grunt-contrib-bootstrap",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: 'grunt-contrib-bootstrap',
+9 verbose parsed url   path: 'grunt-contrib-bootstrap',
+9 verbose parsed url   href: 'grunt-contrib-bootstrap' }
+10 silly lockFile 8d02b526-grunt-contrib-bootstrap grunt-contrib-bootstrap
+11 verbose lock grunt-contrib-bootstrap /home/wdonahoe/.npm/8d02b526-grunt-contrib-bootstrap.lock
+12 silly lockFile 8d02b526-grunt-contrib-bootstrap grunt-contrib-bootstrap
+13 silly lockFile 8d02b526-grunt-contrib-bootstrap grunt-contrib-bootstrap
+14 verbose addNamed [ 'grunt-contrib-bootstrap', '' ]
+15 verbose addNamed [ null, '*' ]
+16 silly lockFile 69c51c16-grunt-contrib-bootstrap grunt-contrib-bootstrap@
+17 verbose lock grunt-contrib-bootstrap@ /home/wdonahoe/.npm/69c51c16-grunt-contrib-bootstrap.lock
+18 silly addNameRange { name: 'grunt-contrib-bootstrap', range: '*', hasData: false }
+19 verbose request where is /grunt-contrib-bootstrap
+20 verbose request registry https://registry.npmjs.org/
+21 verbose request id 0b2016f755d2e69d
+22 verbose url raw /grunt-contrib-bootstrap
+23 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-contrib-bootstrap' ]
+24 verbose url resolved https://registry.npmjs.org/grunt-contrib-bootstrap
+25 verbose request where is https://registry.npmjs.org/grunt-contrib-bootstrap
+26 info trying registry request attempt 1 at 12:28:20
+27 http GET https://registry.npmjs.org/grunt-contrib-bootstrap
+28 http 404 https://registry.npmjs.org/grunt-contrib-bootstrap
+29 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+29 verbose headers   'content-type': 'application/json',
+29 verbose headers   'cache-control': 'max-age=0',
+29 verbose headers   'content-length': '51',
+29 verbose headers   'accept-ranges': 'bytes',
+29 verbose headers   date: 'Sun, 26 Jul 2015 16:28:20 GMT',
+29 verbose headers   via: '1.1 varnish',
+29 verbose headers   age: '0',
+29 verbose headers   connection: 'keep-alive',
+29 verbose headers   'x-served-by': 'cache-atl6235-ATL',
+29 verbose headers   'x-cache': 'MISS',
+29 verbose headers   'x-cache-hits': '0',
+29 verbose headers   'x-timer': 'S1437928100.516120,VS0,VE29' }
+30 silly registry.get cb [ 404,
+30 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+30 silly registry.get     'content-type': 'application/json',
+30 silly registry.get     'cache-control': 'max-age=0',
+30 silly registry.get     'content-length': '51',
+30 silly registry.get     'accept-ranges': 'bytes',
+30 silly registry.get     date: 'Sun, 26 Jul 2015 16:28:20 GMT',
+30 silly registry.get     via: '1.1 varnish',
+30 silly registry.get     age: '0',
+30 silly registry.get     connection: 'keep-alive',
+30 silly registry.get     'x-served-by': 'cache-atl6235-ATL',
+30 silly registry.get     'x-cache': 'MISS',
+30 silly registry.get     'x-cache-hits': '0',
+30 silly registry.get     'x-timer': 'S1437928100.516120,VS0,VE29' } ]
+31 silly lockFile 69c51c16-grunt-contrib-bootstrap grunt-contrib-bootstrap@
+32 silly lockFile 69c51c16-grunt-contrib-bootstrap grunt-contrib-bootstrap@
+33 error 404 404 Not Found: grunt-contrib-bootstrap
+33 error 404
+33 error 404 'grunt-contrib-bootstrap' is not in the npm registry.
+33 error 404 You should bug the author to publish it
+33 error 404 It was specified as a dependency of 'wdonahoeart-client'
+33 error 404
+33 error 404 Note that you can also install from a
+33 error 404 tarball, folder, or http url, or git url.
+34 error System Linux 3.13.0-55-generic
+35 error command "/usr/bin/node" "/usr/bin/npm" "install" "grunt-contrib-bootstrap" "--save-dev"
+36 error cwd /home/wdonahoe/Documents/projects/wdonahoeart3-client
+37 error node -v v0.10.39
+38 error npm -v 1.4.28
+39 error code E404
+40 verbose exit [ 1, true ]

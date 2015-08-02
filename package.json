@@ -1,0 +1,14 @@
+{
+  "name": "wdonahoeart-client",
+  "version": "0.1.0",
+  "description": "An AngularJS front-end for wendydonahoeart.com",
+  "author": "Wallace Donahoe",
+  "devDependencies": {
+    "assemble-less": "^0.7.0",
+    "grunt": "^0.4.5",
+    "grunt-bootstrap": "^0.1.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
