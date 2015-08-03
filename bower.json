@@ -9,7 +9,8 @@
     "a0-angular-storage": "~0.0.6",
     "typekit-load": "~0.1.2",
     "angular-ui-router": "~0.2.11",
-    "angular-ui-bootstrap":"~0.13.1"
+    "angular-ui-bootstrap":"~0.13.1",
+    "lodash":"~3.10.1"
   },
   "ignore": [
     "**/.*",
