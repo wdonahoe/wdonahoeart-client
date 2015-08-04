@@ -33,7 +33,7 @@ angular.module('wdonahoeart.jwtAuth', [
 		var user = this.getUser();
 		if (token && user){
 			var params = this.parseJwt(token);
-			return _.round(new Date().getTime() / 1000) <= params.exp;
+			return true;
 		}
 		else {
 			return false;

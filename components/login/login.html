@@ -12,4 +12,5 @@
 		<button type="submit" class="btn btn-default" ng-click="login()">Submit</button>
 	</form>
 	<a ui-sref="home()">Go Home</a>
+	<button ng-click="app.logout()" ng-show="app.isAuthed()">logout</button>
 </div>
