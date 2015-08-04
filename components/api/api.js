@@ -1,13 +1,15 @@
 angular.module('wdonahoeart.api', [
 
 ])
-.factory('apiFactory', ['$http', function($http){
+.factory('apiFactory', function($http){
 
 	var url = 'http://localhost:8080/api';
 	var apiFactory = {};
 
 	apiFactory.login = function(user){
-		return $http.post({
+
+		return $http({
+			method: 'POST',
 			url: url + '/login',
 			data: user
 		});
@@ -16,4 +18,4 @@ angular.module('wdonahoeart.api', [
 	/* more functions */
 
 	return apiFactory;
-}]);
+});

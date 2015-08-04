@@ -1,35 +1,44 @@
 angular.module('wdonahoeart.jwtAuth', [
 
 ])
-.service('jwtAuthService', function($window){
-	var self = this;
+.factory('jwtAuthFactory', function($window){
+	var jwtAuthFactory = {};
 
-	self.parseJwt = function(token){
+	jwtAuthFactory.parseJwt = function(token){
 		var base64Url = _.first(token.split('.'));
 		var base64 = base64Url.replace('-', '+').replace('_', '/');
 		return JSON.parse($window.atob(base64));
 	}
 
-	self.saveToken = function(token){
+	jwtAuthFactory.storeToken = function(token, user){
 		$window.localStorage['jwtToken'] = token;
+		$window.localStorage['user'] = user;
 	}
 
-	self.getToken = function(){
+	jwtAuthFactory.getToken = function(){
 		return $window.localStorage['jwtToken'];
 	}
 
-	self.destroyToken = function(){
-		$window.localStorage.removeItem('jwtToken');
+	jwtAuthFactory.getUser = function(){
+		return $window.localStorage['user'];
 	}
 
-	self.isAuthed = function(){
-		var token = self.getToken();
-		if (token){
-			var params = self.parseJwt(token);
+	jwtAuthFactory.destroyAuth = function(){
+		$window.localStorage.removeItem('jwtToken');
+		$window.localStorage.removeItem('user');
+	}
+
+	jwtAuthFactory.isAuthed = function(){
+		var token = this.getToken();
+		var user = this.getUser();
+		if (token && user){
+			var params = this.parseJwt(token);
 			return _.round(new Date().getTime() / 1000) <= params.exp;
 		}
 		else {
 			return false;
 		}
 	}
+
+	return jwtAuthFactory;
 });
