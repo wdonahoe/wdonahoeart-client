@@ -41,4 +41,4 @@ angular.module('wdonahoeart.jwtAuth', [
 	}
 
 	return jwtAuthFactory;
-});
+})

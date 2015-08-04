@@ -15,8 +15,8 @@ angular.module('wdonahoeart.login', [
 	function handleRequest(res){
 		var token = res.data.id_token;
 		var user = res.data.user;
-		if (token)
-			$scope.$emit('gotAuthorization', {token: token, user: user});
+		//if (token)
+		//$scope.$emit('gotAuthorization', {token: token, user: user});
 		$state.go('home');
 	}
 

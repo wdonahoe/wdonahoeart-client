@@ -17,5 +17,21 @@ angular.module('wdonahoeart.api', [
 
 	/* more functions */
 
+	apiFactory.callUnprotected = function(){
+
+		return $http({
+			method: 'GET',
+			url: url + '/test'
+		});
+	}
+
+	apiFactory.callProtected = function(){
+
+		return $http({
+			method: 'GET',
+			url: url + '/test/protect'
+		});
+	}
+
 	return apiFactory;
 });
