@@ -1,8 +1,9 @@
-angular.module('wdonahoeart.login', [
+var login = angular.module('wdonahoeart.login', [
 	'wdonahoeart.api',
 	'ui.router'
-])
-.config(function($stateProvider){
+]);
+
+login.config(function($stateProvider){
 	$stateProvider.state('login',{
 		url: '/login',
 		templateUrl: 'components/login/login.html',

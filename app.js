@@ -1,9 +1,10 @@
-angular.module('wdonahoeart', [
+var app = angular.module('wdonahoeart', [
 	'wdonahoeart.home',
 	'wdonahoeart.login',
 	'wdonahoeart.jwtAuth'
-])
-.config(function($urlRouterProvider, $httpProvider){
+]);
+
+app.config(function($urlRouterProvider, $httpProvider){
 	
 	/* note, you NEED this line for ui-router to work! */
 	$urlRouterProvider.otherwise('/');
