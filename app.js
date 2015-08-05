@@ -1,7 +1,8 @@
 var app = angular.module('wdonahoeart', [
 	'wdonahoeart.home',
 	'wdonahoeart.login',
-	'wdonahoeart.jwtAuth'
+	'wdonahoeart.jwtAuth',
+	'wdonahoeart.imgUpload'
 ]);
 
 app.constant('API','http://localhost:8080/api')
