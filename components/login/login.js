@@ -4,7 +4,7 @@ var login = angular.module('wdonahoeart.login', [
 ]);
 
 login.config(function($stateProvider){
-	$stateProvider.state('login',{
+	$stateProvider.state('login', {
 		url: '/login',
 		templateUrl: 'components/login/login.html',
 		controller: 'LoginCtrl'

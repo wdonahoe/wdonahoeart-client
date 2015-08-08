@@ -2,7 +2,7 @@ var app = angular.module('wdonahoeart', [
 	'wdonahoeart.home',
 	'wdonahoeart.login',
 	'wdonahoeart.jwtAuth',
-	'wdonahoeart.imgUpload'
+	'wdonahoeart.admin'
 ]);
 
 app.constant('API','http://localhost:8080/api')
@@ -12,8 +12,22 @@ app.constant('API','http://localhost:8080/api')
 	$urlRouterProvider.otherwise('/');
 	
 	$httpProvider.interceptors.push('jwtAuthInterceptor');
+
+})
+.run(function($rootScope, $state, jwtAuthFactory){
+
+	$rootScope.$on('$stateChangeStart', function(e, to){
+		if (to.data && to.data.requiresLogin){
+			if (!jwtAuthFactory.isAuthed()){
+				e.preventDefault();
+				$state.go('login');
+			}
+		}
+	});
+
 })
 .factory('jwtAuthInterceptor', ['$q', '$injector', 'jwtAuthFactory', 'API', function($q, $injector, jwtAuthFactory, API){
+	
 	return {
 		request: function(config){
 			var token = jwtAuthFactory.getToken();
@@ -39,6 +53,7 @@ app.constant('API','http://localhost:8080/api')
 			return $q.reject(rejection);
 		}
 	};
+
 }])
 .controller('AppCtrl', ['$scope', '$state', 'jwtAuthFactory', function($scope, $state, jwtAuthFactory){
 
