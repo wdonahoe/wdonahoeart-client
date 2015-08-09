@@ -1,6 +1,6 @@
-admin.controller('UploadCtrl',function($scope, $http){
+admin.controller('UploadCtrl', function($http){
 
-	$scope.file = {};
+	this.uploader = {};
 
 	
 

@@ -1,36 +1,37 @@
-<div class="row">
-	<div class="well well-sm">
 
-		<div class="col-md-6">
+	<!-- <div class="well well-sm"> -->
+
+		<div class="col-md-6 col-xs-4">
 			<form novalidate role="form" class="form-horizontal" ng-controller="UploadCtrl as upload">
-
+			<h1>Upload</h1>
 			<!-- Title -->
-			<div class="form-group">
-				<label for="title" class="col-sm-2 control-label">Title</label>
-				<input class="form-control" ng-model="upload.data.title" id="title" placeholder="Title"/>
+			<div class="form-group row">
+				<label for="title" class="col-md-2 control-label">Title</label>
+				<div class="col-md-8">
+					<input class="form-control" ng-model="upload.data.title" id="title" placeholder="Title"/>
+				</div>
 			</div>
 
 			<!-- Medium -->
-			<div class="form-group">
-				<label for="medium" class="col-sm-2 control-label">Medium</label>
-				<input class="form-control" ng-model="upload.data.medium" id="medium" placeholder="Medium" /> 
-			</div>
-			<hr align="left" class="form-divide">
-
-			<div class="form-group">
-				<div class="col-md-6">
-					<label for="medium" class="col-sm-4 control-label">Width</label>
-					<input class="form-control" id="width" ng-model="upload.data.width" placeholder="(in)"/>
-				</div>
-				<div class="col-sm-6">
-					<label for="medium" class="col-sm-4 control-label" id="height-label">Height</label>
-					<input class="form-control" id="height" ng-model="upload.data.height" placeholder="(in)"/>
+			<div class="form-group row">
+				<label for="medium" class="col-md-2 control-label">Medium</label>
+				<div class="col-md-8">
+					<input class="form-control" ng-model="upload.data.medium" id="medium" placeholder="Medium" /> 
 				</div>
 			</div>
 			<hr align="left" class="form-divide">
 
-			<div class="form-group" id="buttons-form">
-					<label class="col-sm-2 control-label" id="gallery-label">Gallery</label>
+			<!-- Dimensions -->
+			<div class="form-group row">
+				<label for="dimensions" class="col-md-3 control-label">Dimensions</label>
+				<div class="col-md-5">
+					<input class="form-control" ng-model="upload.data.dimensions" id="dimensions" placeholder="width x height (in)" />
+				</div>
+			</div>
+
+			<!-- Gallery -->
+			<div class="form-group row">
+				<label class="col-md-3 control-label" id="gallery-label">Gallery</label>
 					<div id="radio-buttons">
 						<label class="radio-inline">
 							<input type="radio" name="type" value="bw" ng-model="upload.data.isBw" /> Gray
@@ -42,20 +43,21 @@
 			</div>
 			<hr align="left" class="form-divide">
 
-			<div class="form-group" id="upload-form">
-				<input type="file" nv-file-select uploader="uploader" /><br/>
+			<!-- Upload -->
+			<div class="form-group row" id="upload-form">
+				<div class="col-md-4">
+					<input type="file" nv-file-select uploader="uploader" /><br/>
 
-				<button>Upload</button>
+					<button>Upload</button>
+				</div>
 			</div>
 
-			</form>
+			</form
 
 		</div>
 
-		<div class="col-md-6">
-
+		<div class="col-sm-6">
 
 
 		</div>
-	</div>
-</div>
+	<!-- </div> -->

@@ -8,29 +8,15 @@
 
 @import "variables.less";
 
-#title, #medium {
-	max-width: @s-input-field-width;
-}
+@media only screen
+and (min-device-width: 992px) {
+	#radio-buttons {
+		position:relative;
+		left:20px;
+	}
 
-.form-divide {
-	max-width: (@s-input-field-width + 17);
-}
-
-#width, #height {
-	max-width: (@s-input-field-width - 13);
-}
-
-#upload-form {
-	position: relative;
-	left:5%;
-}
-
-#height, #height-label {
-	position: relative;
-	left:-40%;
-}
-
-#buttons-form {
-	position: relative;
-	left:1%;
+	#upload-form {
+		position: relative;
+		left:10px;
+	}
 }

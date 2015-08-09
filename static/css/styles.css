@@ -6764,27 +6764,13 @@ button.close {
     display: none !important;
   }
 }
-#title,
-#medium {
-  max-width: 50%;
-}
-.form-divide {
-  max-width: 67%;
-}
-#width,
-#height {
-  max-width: 37%;
-}
-#upload-form {
-  position: relative;
-  left: 5%;
-}
-#height,
-#height-label {
-  position: relative;
-  left: -40%;
-}
-#buttons-form {
-  position: relative;
-  left: 1%;
+@media only screen and (min-device-width: 992px) {
+  #radio-buttons {
+    position: relative;
+    left: 20px;
+  }
+  #upload-form {
+    position: relative;
+    left: 10px;
+  }
 }
