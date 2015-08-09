@@ -1,1 +1,61 @@
-<div class="well">UploadCtrl</div>
+<div class="row">
+	<div class="well well-sm">
+
+		<div class="col-md-6">
+			<form novalidate role="form" class="form-horizontal" ng-controller="UploadCtrl as upload">
+
+			<!-- Title -->
+			<div class="form-group">
+				<label for="title" class="col-sm-2 control-label">Title</label>
+				<input class="form-control" ng-model="upload.data.title" id="title" placeholder="Title"/>
+			</div>
+
+			<!-- Medium -->
+			<div class="form-group">
+				<label for="medium" class="col-sm-2 control-label">Medium</label>
+				<input class="form-control" ng-model="upload.data.medium" id="medium" placeholder="Medium" /> 
+			</div>
+			<hr align="left" class="form-divide">
+
+			<div class="form-group">
+				<div class="col-md-6">
+					<label for="medium" class="col-sm-4 control-label">Width</label>
+					<input class="form-control" id="width" ng-model="upload.data.width" placeholder="(in)"/>
+				</div>
+				<div class="col-sm-6">
+					<label for="medium" class="col-sm-4 control-label" id="height-label">Height</label>
+					<input class="form-control" id="height" ng-model="upload.data.height" placeholder="(in)"/>
+				</div>
+			</div>
+			<hr align="left" class="form-divide">
+
+			<div class="form-group" id="buttons-form">
+					<label class="col-sm-2 control-label" id="gallery-label">Gallery</label>
+					<div id="radio-buttons">
+						<label class="radio-inline">
+							<input type="radio" name="type" value="bw" ng-model="upload.data.isBw" /> Gray
+							</label>
+						<label class="radio-inline">
+							<input type="radio" name="type" value="color" ng-model="upload.data.isBw" /> Color
+						</label>
+					</div>
+			</div>
+			<hr align="left" class="form-divide">
+
+			<div class="form-group" id="upload-form">
+				<input type="file" nv-file-select uploader="uploader" /><br/>
+
+				<button>Upload</button>
+			</div>
+
+			</form>
+
+		</div>
+
+		<div class="col-md-6">
+
+
+
+		</div>
+	</div>
+</div>

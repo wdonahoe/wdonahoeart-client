@@ -6,6 +6,31 @@
 
 // import custom bootstrap styles
 
-@border-radius-base: 3px;
-@border-radius-large: 3px;
-@border-radius-small: 3px;
+@import "variables.less";
+
+#title, #medium {
+	max-width: @s-input-field-width;
+}
+
+.form-divide {
+	max-width: (@s-input-field-width + 17);
+}
+
+#width, #height {
+	max-width: (@s-input-field-width - 13);
+}
+
+#upload-form {
+	position: relative;
+	left:5%;
+}
+
+#height, #height-label {
+	position: relative;
+	left:-40%;
+}
+
+#buttons-form {
+	position: relative;
+	left:1%;
+}
