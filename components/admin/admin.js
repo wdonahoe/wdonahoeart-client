@@ -1,4 +1,5 @@
 var admin = angular.module('wdonahoeart.admin',[ 
+	'wdonahoeart.fileReader',
 	'ui.router'
 ]);
 

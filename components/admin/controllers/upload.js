@@ -1,7 +1,13 @@
-admin.controller('UploadCtrl', function($http){
+admin.controller('UploadCtrl', ['fileReaderFactory','$scope', function(fileReaderFactory, $scope){
 
-	this.uploader = {};
+	$scope.data = {};
 
+	$scope.readFile = function() {
+		fileReaderFactory.readAsDataUrl($scope.file, $scope)
+			.then(function(result){
+				$scope.imgSrc = result;
+			});
+	};
 	
 
-});
+}]);

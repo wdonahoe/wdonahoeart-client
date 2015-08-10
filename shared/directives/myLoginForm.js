@@ -8,8 +8,8 @@ app.directive('myLoginForm', function(){
 		},
 		controller: 'LoginCtrl',
 		templateUrl: 'shared/templates/myLoginForm.html',
-		link: function(scope, element, attr){
-			element.find("label").text(_.capitalize(attr.name));
+		link: function(scope, element, attrs){
+			element.find("label").text(_.capitalize(attrs.name));
 		}
 	};
 });

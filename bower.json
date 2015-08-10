@@ -10,7 +10,8 @@
     "typekit-load": "~0.1.2",
     "angular-ui-router": "~0.2.11",
     "lodash": "~3.10.1",
-    "remove":"4"
+    "ng-file-upload": "~6.0.4",
+    "aws-sdk-js": "~2.1.44"
   },
   "ignore": [
     "**/.*",

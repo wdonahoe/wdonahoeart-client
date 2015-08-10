@@ -2,13 +2,13 @@
 	<!-- <div class="well well-sm"> -->
 
 		<div class="col-md-6 col-xs-4">
-			<form novalidate role="form" class="form-horizontal" ng-controller="UploadCtrl as upload">
+			<form novalidate role="form" class="form-horizontal" ng-controller="UploadCtrl">
 			<h1>Upload</h1>
 			<!-- Title -->
 			<div class="form-group row">
 				<label for="title" class="col-md-2 control-label">Title</label>
 				<div class="col-md-8">
-					<input class="form-control" ng-model="upload.data.title" id="title" placeholder="Title"/>
+					<input class="form-control" ng-model="data.title" id="title" placeholder="Title"/>
 				</div>
 			</div>
 
@@ -16,7 +16,7 @@
 			<div class="form-group row">
 				<label for="medium" class="col-md-2 control-label">Medium</label>
 				<div class="col-md-8">
-					<input class="form-control" ng-model="upload.data.medium" id="medium" placeholder="Medium" /> 
+					<input class="form-control" ng-model="data.medium" id="medium" placeholder="Medium" /> 
 				</div>
 			</div>
 			<hr align="left" class="form-divide">
@@ -25,7 +25,7 @@
 			<div class="form-group row">
 				<label for="dimensions" class="col-md-3 control-label">Dimensions</label>
 				<div class="col-md-5">
-					<input class="form-control" ng-model="upload.data.dimensions" id="dimensions" placeholder="width x height (in)" />
+					<input class="form-control" ng-model="data.dimensions" id="dimensions" placeholder="width x height (in)" />
 				</div>
 			</div>
 
@@ -34,30 +34,34 @@
 				<label class="col-md-3 control-label" id="gallery-label">Gallery</label>
 					<div id="radio-buttons">
 						<label class="radio-inline">
-							<input type="radio" name="type" value="bw" ng-model="upload.data.isBw" /> Gray
+							<input type="radio" name="type" value=true ng-model="data.isBw" /> Gray
 							</label>
 						<label class="radio-inline">
-							<input type="radio" name="type" value="color" ng-model="upload.data.isBw" /> Color
+							<input type="radio" name="type" value=false ng-model="data.isBw" /> Color
 						</label>
 					</div>
 			</div>
 			<hr align="left" class="form-divide">
 
 			<!-- Upload -->
-			<div class="form-group row" id="upload-form">
-				<div class="col-md-4">
-					<input type="file" nv-file-select uploader="uploader" /><br/>
-
-					<button>Upload</button>
+			<div class="form-group row">
+				<label for="gallery-upload" class="col-md-3 control-label">Upload</label>
+				<div class="col-md-6" id="gallery-upload">
+					<div file-upload="file" on-change="readFile()"></div>
 				</div>
 			</div>
+			<hr>
 
-			</form
+			<button class="btn btn-default" ng-click="upload.uploadPic(file)">Submit</button>
+			<pre>
+	{{ data | json }}
+			</pre>
+
+			</form>
 
 		</div>
 
-		<div class="col-sm-6">
-
-
+		<div class="col-sm-6" ng-controller="UploadCtrl">
+			<img ng-src="{{ imgSrc }}"
 		</div>
 	<!-- </div> -->
