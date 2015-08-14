@@ -1,4 +1,4 @@
-app.directive('fileUpload', function($parse){
+app.directive('fileInput', function($parse){
 	return {
 		restrict: 'EA',
 		template: '<input type="file" />',
@@ -13,6 +13,7 @@ app.directive('fileUpload', function($parse){
 				scope.$apply(function(){
 					modelSet(scope, element[0].files[0]);
 					onChange(scope);
+					console.log(scope)
 				});
 			};
 

@@ -1,4 +1,5 @@
-var admin = angular.module('wdonahoeart.admin',[ 
+var admin = angular.module('wdonahoeart.admin',[
+	'angular-wurfl-image-tailor', 
 	'wdonahoeart.fileReader',
 	'ui.router'
 ]);

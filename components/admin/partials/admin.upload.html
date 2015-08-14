@@ -1,8 +1,7 @@
 
-	<!-- <div class="well well-sm"> -->
-
+	<div ng-controller="UploadCtrl">
 		<div class="col-md-6 col-xs-4">
-			<form novalidate role="form" class="form-horizontal" ng-controller="UploadCtrl">
+			<form novalidate role="form" class="form-horizontal">
 			<h1>Upload</h1>
 			<!-- Title -->
 			<div class="form-group row">
@@ -47,21 +46,20 @@
 			<div class="form-group row">
 				<label for="gallery-upload" class="col-md-3 control-label">Upload</label>
 				<div class="col-md-6" id="gallery-upload">
-					<div file-upload="file" on-change="readFile()"></div>
+					<div file-input="file" on-change="readFile()"></div>
 				</div>
 			</div>
 			<hr>
 
-			<button class="btn btn-default" ng-click="upload.uploadPic(file)">Submit</button>
+			<button class="btn btn-default" ng-click="upload.uploadImg(file)">Submit</button>
 			<pre>
 	{{ data | json }}
 			</pre>
 
 			</form>
-
 		</div>
 
 		<div class="col-sm-6" ng-controller="UploadCtrl">
-			<img ng-src="{{ imgSrc }}"
+			<img-wit src="{{ imgSrc }}" />
 		</div>
-	<!-- </div> -->
+	</div>

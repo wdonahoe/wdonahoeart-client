@@ -1,5 +1,5 @@
 admin.controller('UploadCtrl', ['fileReaderFactory','$scope', function(fileReaderFactory, $scope){
-
+	
 	$scope.data = {};
 
 	$scope.readFile = function() {
@@ -8,6 +8,9 @@ admin.controller('UploadCtrl', ['fileReaderFactory','$scope', function(fileReade
 				$scope.imgSrc = result;
 			});
 	};
-	
+
+	$scope.$on('fileProgress', function(e, progress){
+		$scope.progress = progress.loaded / progress.total;
+	});
 
 }]);
