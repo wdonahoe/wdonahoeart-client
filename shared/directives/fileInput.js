@@ -13,7 +13,6 @@ app.directive('fileInput', function($parse){
 				scope.$apply(function(){
 					modelSet(scope, element[0].files[0]);
 					onChange(scope);
-					console.log(scope)
 				});
 			};
 

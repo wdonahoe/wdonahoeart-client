@@ -51,15 +51,16 @@
 			</div>
 			<hr>
 
-			<button class="btn btn-default" ng-click="upload.uploadImg(file)">Submit</button>
+			<button class="btn btn-default" ng-click="upload()">Submit</button>
 			<pre>
 	{{ data | json }}
+	{{ uploadResponse | json }}
 			</pre>
 
 			</form>
 		</div>
 
 		<div class="col-sm-6" ng-controller="UploadCtrl">
-			<img-wit src="{{ imgSrc }}" />
+			<!-- <img ng-src="{{ imgSrc }}" /> -->
 		</div>
 	</div>

@@ -5,7 +5,7 @@ var app = angular.module('wdonahoeart', [
 	'wdonahoeart.admin'
 ]);
 
-app.constant('API','http://localhost:8080/api')
+app.constant('API_URL','http://localhost:8080/api')
 .config(function($urlRouterProvider, $httpProvider){
 	
 	/* note, you NEED this line for ui-router to work! */
@@ -26,19 +26,19 @@ app.constant('API','http://localhost:8080/api')
 	});
 
 })
-.factory('jwtAuthInterceptor', ['$q', '$injector', 'jwtAuthFactory', 'API', function($q, $injector, jwtAuthFactory, API){
+.factory('jwtAuthInterceptor', ['$q', '$injector', 'jwtAuthFactory', 'API_URL', function($q, $injector, jwtAuthFactory, API_URL){
 	
 	return {
 		request: function(config){
 			var token = jwtAuthFactory.getToken();
-			if (config.url.indexOf(API) === 0 && token){
-				console.log("Making request to api...");
+			if (config.url.indexOf(API_URL) === 0 && token){
+				console.log("Making request to api with token...");
 				config.headers.authorization = 'Bearer ' + token;
 			}
 			return config;
 		},
 		response: function(res){
-			if (res.config.url.indexOf(API) === 0 && res.data.id_token){
+			if (res.config.url.indexOf(API_URL) === 0 && res.data.id_token){
 				console.log("storing token: " + res.data.id_token);
 				jwtAuthFactory.storeToken(res.data.id_token, res.data.user);
 			}

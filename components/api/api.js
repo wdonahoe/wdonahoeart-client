@@ -1,16 +1,14 @@
 angular.module('wdonahoeart.api', [
-
 ])
-.factory('apiFactory', function($http){
+.factory('apiFactory', ['$http', 'API_URL', function($http, API_URL){
 
-	var url = 'http://localhost:8080/api';
 	var apiFactory = {};
 
 	apiFactory.login = function(user){
 
 		return $http({
 			method: 'POST',
-			url: url + '/login',
+			url: API_URL + '/login',
 			data: user
 		});
 	};
@@ -21,17 +19,31 @@ angular.module('wdonahoeart.api', [
 
 		return $http({
 			method: 'GET',
-			url: url + '/test'
+			url: API_URL + '/test'
 		});
-	}
+	};
 
 	apiFactory.callProtected = function(){
 
 		return $http({
 			method: 'GET',
-			url: url + '/test/protect'
+			url: API_URL + '/test/protect'
 		});
-	}
+
+	};
+
+	apiFactory.uploadS3 = function(file, data){
+		var fd = new FormData();
+		fd.append('file', file);
+		//fd.append('data', JSON.stringify(data));
+		var myHeaders = {
+			'Content-Type': undefined
+		};
+		return $http.post(API_URL + '/upload_s3', fd, {
+			transformRequest: angular.identity,
+			headers: myHeaders
+		});
+	};
 
 	return apiFactory;
-});
+}]);
