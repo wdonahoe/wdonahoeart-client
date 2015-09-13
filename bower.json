@@ -18,5 +18,8 @@
     "node_modules",
     "bower_components",
     "vendor"
-  ]
+  ],
+  "resolutions": {
+    "angular": "~1.2.11"
+  }
 }

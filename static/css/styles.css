@@ -6774,3 +6774,7 @@ button.close {
     left: 10px;
   }
 }
+#gallery-upload {
+  position: relative;
+  left: -17px;
+}

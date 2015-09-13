@@ -40,12 +40,6 @@ angular.module('wdonahoeart.fileReader', [
             var deferred = $q.defer();
              
             var reader = getReader(deferred, scope);    
-
-            scope.$broadcast("fileData", {
-                name: file.name,
-                type: file.type
-            });
-
             reader.readAsText(file);
              
             return deferred.promise;
@@ -53,7 +47,7 @@ angular.module('wdonahoeart.fileReader', [
 
 
 	return {
-        readAsDataUrl: readAsDataURL
+        readAsText: readAsText
     };
 
 }]);
