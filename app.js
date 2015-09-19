@@ -2,7 +2,8 @@ var app = angular.module('wdonahoeart', [
 	'wdonahoeart.home',
 	'wdonahoeart.login',
 	'wdonahoeart.jwtAuth',
-	'wdonahoeart.admin'
+	'wdonahoeart.admin',
+	'wdonahoeart.gallery'
 ]);
 
 app.constant('API_URL','http://localhost:8080/api')
@@ -13,6 +14,11 @@ app.constant('API_URL','http://localhost:8080/api')
 	
 	$httpProvider.interceptors.push('jwtAuthInterceptor');
 
+})
+.filter('trusted', function($sce){
+	return function(url){
+		return $sce.trustAsResourceUrl(url);
+	};
 })
 .run(function($rootScope, $state, jwtAuthFactory){
 

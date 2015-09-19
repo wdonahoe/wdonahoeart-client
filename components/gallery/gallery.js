@@ -1,5 +1,7 @@
 angular.module("wdonahoeart.gallery", [
-
+	'ngResource',
+	'angular-wurfl-image-tailor',
+	'ui.router'
 ])
 .config(function($stateProvider){
 	$stateProvider
@@ -9,13 +11,33 @@ angular.module("wdonahoeart.gallery", [
 			templateUrl: 'components/gallery/gallery.html',
 			controller: 'GalleryCtrl'
 		})
-		.state('gallery.shadesOfGray', {
-			url: 'shades-of-gray',
-			templateUrl: 'components/gallery/gallery.html',
+		.state('gallery.shades-of-gray', {
+			url: '/shades-of-gray',
+			templateUrl: 'components/gallery/partials/gallery.shades-of-gray.html',
+			controller: function($scope, drawings){
+				$scope.drawings = drawings.data;
+			},
 			resolve: {
-				getDrawingUrls: function(apiFactory){
+				apiFactory: 'apiFactory',
+				drawings: function(apiFactory){
 					return apiFactory.getImageUrls(true);
-				};
+				}
+			}
+		})
+		.state('gallery.color', {
+			url: '/color',
+			templateUrl: 'components/gallery/partials/gallery.color.html',
+			controller: function($scope, drawings){
+				$scope.drawings = drawings.data;
+			},
+			resolve: {
+				apiFactory: 'apiFactory',
+				drawings: function(apiFactory){
+					return apiFactory.getImageUrls(false);
+				}
 			}
 		});
+})
+.controller('GalleryCtrl', function($scope){
+
 });

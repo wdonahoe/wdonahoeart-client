@@ -1,4 +1,5 @@
 var admin = angular.module('wdonahoeart.admin',[
+	'ngResource',
 	'angular-wurfl-image-tailor',
 	'ui.router'
 ]);
@@ -17,7 +18,7 @@ admin.config(function($stateProvider){
 		.state('admin.upload', {
 			url: '',
 			templateUrl: 'components/admin/partials/admin.upload.html',
-			controller: 'UploadCtrl'
+			controller: 'UploadCtrl',
 		})
 		.state('admin.edit', {
 			url: '/edit/{title}',
