@@ -1,12 +1,4 @@
-admin.controller('UploadCtrl', ['apiFactory','$scope', function(apiFactory, $scope){
-	
-	$scope.data = {
-		title:'Deer Isle Cottage',
-		medium: 'charcoal and graphite',
-		width: 26,
-		height: 16,
-		isBw: true
-	};
+admin.controller('UploadCtrl', ['apiFactory','$scope', '$timeout', '$state', function(apiFactory, $scope, $timeout, $state){
 
 	var data_keys = ['title','medium','width','height','isBw'];
 	var imgUploaded = false;
@@ -17,13 +9,24 @@ admin.controller('UploadCtrl', ['apiFactory','$scope', function(apiFactory, $sco
 	}
 
 	$scope.upload = function(){
+		$scope.loading = true;
+
 		apiFactory.uploadS3($scope.file, $scope.data)
 			.then(function(result){
 				
-				$scope.myForm.$setPristine();
-				$scope.myForm.$setUntouched();
-				$scope.data = {};
-				imgUploaded = false;
+				$timeout(function(){
+
+					$scope.myForm.$setPristine();
+					$scope.myForm.$setUntouched();
+					$scope.data = {};
+					imgUploaded = false;
+					$scope.loading = false;
+
+					var toGo = result.data.isBw ? "shades-of-gray" : "color";
+
+					$state.go('gallery.' + toGo);
+				}, 2000);
+				
 
 			}, function(error){
 				console.log(error);
@@ -31,4 +34,19 @@ admin.controller('UploadCtrl', ['apiFactory','$scope', function(apiFactory, $sco
 		);
 	};
 
-}]);
+}])
+.directive('spinner', function(){
+	return {
+		restrict: 'E',
+		replace: true,
+		template: '<img class="img-responsive center-block" src="static/ring.gif" />',
+		link: function(scope, element, attr){
+			scope.$watch('loading', function(val){
+				if (val)
+					$(element).show();
+				else
+					$(element).hide();
+			});
+		}
+	}
+});

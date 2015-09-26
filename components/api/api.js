@@ -61,5 +61,26 @@ angular.module('wdonahoeart.api', [
 		});
 	};
 
+	apiFactory.uploadGulp = function(file, fileData){
+		return $http.post(API_URL + '/upload_gulp',
+			{
+				file: file,
+				fileData: fileData
+			},
+			{
+				transformRequest: function(data){
+					var formData = new FormData();
+
+					formData.append("data", JSON.stringify(data.fileData));
+					formData.append("file", data.file);
+
+					return formData;
+				},
+				headers: {
+					'Content-Type': undefined
+			}
+		});
+	}
+
 	return apiFactory;
 }]);

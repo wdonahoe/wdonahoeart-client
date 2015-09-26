@@ -26,7 +26,7 @@ angular.module("wdonahoeart.gallery", [
 		})
 		.state('gallery.color', {
 			url: '/color',
-			templateUrl: 'components/gallery/partials/gallery.color.html',
+			templateUrl: 'components/gallery/partials/gallery.shades-of-gray.html',
 			controller: function($scope, drawings){
 				$scope.drawings = drawings.data;
 			},
