@@ -5,7 +5,8 @@ admin.controller('UploadCtrl', ['apiFactory','$scope', '$timeout', '$state', fun
 
 	$scope.allFilled = function() {
 		var keys = _.keys($scope.data)
-		return !(_.isEmpty(_.difference(data_keys, keys)) && $scope.file);
+		//return !(_.isEmpty(_.difference(data_keys, keys)) && $scope.file);
+		return false;
 	}
 
 	$scope.upload = function(){
@@ -25,7 +26,7 @@ admin.controller('UploadCtrl', ['apiFactory','$scope', '$timeout', '$state', fun
 					var toGo = result.data.isBw ? "shades-of-gray" : "color";
 
 					$state.go('gallery.' + toGo);
-				}, 2000);
+				}, 15000);
 				
 
 			}, function(error){
@@ -39,7 +40,7 @@ admin.controller('UploadCtrl', ['apiFactory','$scope', '$timeout', '$state', fun
 	return {
 		restrict: 'E',
 		replace: true,
-		template: '<img class="img-responsive center-block" src="static/ring.gif" />',
+		template: '<span class="spinner"><img class="img-responsive center-block" src="static/loading-spinning-bubbles.svg" /></span>',
 		link: function(scope, element, attr){
 			scope.$watch('loading', function(val){
 				if (val)
@@ -48,5 +49,16 @@ admin.controller('UploadCtrl', ['apiFactory','$scope', '$timeout', '$state', fun
 					$(element).hide();
 			});
 		}
-	}
+	};
+})
+.directive('fadeOut', function(){
+	return {
+		restrict: 'A',
+		link: function(scope, element, attr){
+			scope.$watch('loading', function(val){
+				if (val)
+					element.toggleClass("fadez");				
+			});
+		}
+	};
 });

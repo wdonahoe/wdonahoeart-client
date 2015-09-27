@@ -8,6 +8,8 @@
 
 @import "variables.less";
 
+@import "mixins.less";
+
 @media only screen
 and (min-device-width: 992px) {
 	#radio-buttons {
@@ -25,4 +27,25 @@ and (min-device-width: 992px) {
 	position:relative;
 	left:-17px;
 }
+
+.fadez {
+	animation-name: myFade;
+	animation-duration: 0.6s;
+	animation-timing-function: cubic-bezier(.02,.74,.9,.96);
+	animation-fill-mode: forwards;
+}
+
+.spinner {
+	position: absolute;
+	z-index:1;
+	top: 40%;
+	left: 90%;
+}
+
+@-webkit-keyframes myFade {.opacity-mixin;}
+@-moz-keyframes myFade {.opacity-mixin;}
+@-ms-keyframes myFade {.opacity-mixin;}
+@-o-keyframes myFade {.opacity-mixin;}
+@keyframes myFade {.opacity-mixin;}
+
 
