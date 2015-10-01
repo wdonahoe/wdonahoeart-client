@@ -1,3 +1,4 @@
 <ul ng-repeat="drawing in drawings">
-	<li>{{drawing.url}}</li>
+	<img-wit ng-cloak ng-src="{{drawing.url | trusted}}" w="1000"></img-wit>
+	{{drawing.title}} - {{drawing.width}}" x {{drawing.height}}", {{drawing.medium}} 
 </ul>

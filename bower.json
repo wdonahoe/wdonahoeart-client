@@ -11,7 +11,8 @@
     "angular-ui-router": "~0.2.11",
     "lodash": "~3.10.1",
     "ng-file-upload": "~6.0.4",
-    "aws-sdk-js": "~2.1.44"
+    "aws-sdk-js": "~2.1.44",
+    "ui-router-extras": "~0.0.14"
   },
   "ignore": [
     "**/.*",

@@ -8,6 +8,9 @@
 		<link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 		<link href="static/css/styles.css" rel="stylesheet">
 
+		<link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css">
+		<link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css">
+
 		<title>Wendy Donahoe Art</title>
 	</head>
 	<body>
@@ -32,8 +35,8 @@
 							</ul>
 						</li>
 
-						<li><a ui-sref="gallery.shades-of-gray">Shades of Gray</a></li>
-						<li><a ui-sref="gallery.color">Color</a></li>
+						<li><a ui-sref="gallery.views({gallery: 'shades-of-gray'})">Shades of Gray</a></li>
+						<li><a ui-sref="gallery.views({gallery: 'color'})">Color</a></li>
 						<li><a href="#/">Contact</a></li>
 
 
@@ -65,6 +68,9 @@
 		<!-- Bootstrap javascript -->
 		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 
+		<script src="bower_components/slick-carousel/slick/slick.js"></script>
+		<script src="bower_components/angular-slick/dist/slick.js"></script>
+
 		<!-- My Modules -->
 		<script src="app.js" type="text/javascript"></script>
 		<script src="components/home/home.js" type="text/javascript"></script>
@@ -83,5 +89,6 @@
 		<!-- Shared -->
 		<script src="shared/directives/fileInput.js" type="text/javascript"></script>
 		<script src="shared/directives/myLoginForm.js" type="text/javascript"></script>
+		<script src="shared/directives/galleryImage.js" type="text/javascript"></script>
 	</body>
 </html>

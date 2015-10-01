@@ -1587,7 +1587,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 1380px;
   }
 }
 .container-fluid {
@@ -6772,6 +6772,41 @@ button.close {
   #upload-form {
     position: relative;
     left: 10px;
+  }
+}
+.gallery-img {
+  left: 100%;
+  display: block;
+  margin: 0 auto;
+  position: sticky;
+  left: 0;
+}
+@media only screen and (max-width: 667px) {
+  .gallery-img {
+    height: auto;
+    width: 275px;
+    border: 5px solid blue;
+  }
+}
+@media only screen and (min-width: 668px) and (max-width: 1500px) {
+  .gallery-img {
+    height: auto;
+    width: 350px;
+    border: 5px solid red;
+  }
+}
+@media only screen and (min-width: 1501px) and (max-width: 2200px) {
+  .gallery-img {
+    height: auto;
+    width: 500px;
+    border: 5px solid green;
+  }
+}
+@media only screen and (min-width: 2201px) and (max-width: 3840px) {
+  .gallery-img {
+    height: auto;
+    width: 650px;
+    border: 5px solid black;
   }
 }
 #gallery-upload {

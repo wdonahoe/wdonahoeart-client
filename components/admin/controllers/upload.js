@@ -26,7 +26,7 @@ admin.controller('UploadCtrl', ['apiFactory','$scope', '$timeout', '$state', fun
 					var toGo = result.data.isBw ? "shades-of-gray" : "color";
 
 					$state.go('gallery.' + toGo);
-				}, 15000);
+				}, 1500);
 				
 
 			}, function(error){

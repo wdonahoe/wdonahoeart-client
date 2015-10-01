@@ -1,43 +1,39 @@
 angular.module("wdonahoeart.gallery", [
 	'ngResource',
 	'angular-wurfl-image-tailor',
-	'ui.router'
+	'ui.router',
+	'slick'
 ])
 .config(function($stateProvider){
 	$stateProvider
-		.state('gallery', {
+		.state('gallery',{
 			abstract: true,
-			url: '/gallery',
-			templateUrl: 'components/gallery/gallery.html',
-			controller: 'GalleryCtrl'
+			templateUrl: 'components/gallery/gallery.html'
 		})
-		.state('gallery.shades-of-gray', {
-			url: '/shades-of-gray',
-			templateUrl: 'components/gallery/partials/gallery.shades-of-gray.html',
-			controller: function($scope, drawings){
-				$scope.drawings = drawings.data;
-			},
-			resolve: {
-				apiFactory: 'apiFactory',
-				drawings: function(apiFactory){
-					return apiFactory.getImageUrls(true);
+		.state('gallery.views', {
+			url: '/{gallery}',
+			views: {
+				'left@gallery': {
+					templateUrl: 'components/gallery/partials/gallery-slick.html',
+					controller: 'SliderController'
+				},
+				'right@gallery': {
+					templateUrl: 'components/gallery/partials/gallery-img.html',
+					controller: 'GalleryImgController'
 				}
-			}
-		})
-		.state('gallery.color', {
-			url: '/color',
-			templateUrl: 'components/gallery/partials/gallery.shades-of-gray.html',
-			controller: function($scope, drawings){
-				$scope.drawings = drawings.data;
 			},
 			resolve: {
 				apiFactory: 'apiFactory',
-				drawings: function(apiFactory){
-					return apiFactory.getImageUrls(false);
+				drawings: function(apiFactory, $stateParams){
+					var galleryType = $stateParams.gallery == 'color' ? false : true;
+					return apiFactory.getImageUrls(galleryType);
 				}
 			}
 		});
 })
-.controller('GalleryCtrl', function($scope){
-
+.controller('SliderController', function($scope, drawings){
+	$scope.drawings = drawings.data;
+})
+.controller('GalleryImgController', function($scope, drawings){
+	$scope.currentDrawing = drawings.data[0];
 });
