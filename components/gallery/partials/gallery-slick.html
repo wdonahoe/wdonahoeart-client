@@ -1,5 +1,5 @@
-<slick>
+<scroll-pane>
 	<div ng-repeat="drawing in drawings">
-		<img-wit w="100" src="{{drawing.url | trusted}}">
+		<img ng-src="{{drawing.url | trusted}}" class="carousel-img" />
 	</div>
-</slick>
+</scroll-pane>

@@ -1,0 +1,49 @@
+.gallery-img {
+	left:100%;
+	display: block;
+	margin: 0 auto;
+	position: sticky;
+	left: 0;
+}
+
+
+@media only screen
+and (max-width: 667px){
+	.gallery-img {
+		height: auto;
+		width: 275px;
+	}
+}
+
+@media only screen 
+and (min-width: 668px) 
+and (max-width: 1500px) {
+
+  	.gallery-img {
+  		height: auto;
+  		width: 350px;
+  	}
+
+}
+
+@media only screen 
+and (min-width: 1501px) 
+and (max-width: 2200px) {
+
+  	.gallery-img {
+  		height: auto;
+  		width: 500px;
+  	}
+
+}
+
+@media only screen 
+and (min-width: 2201px) 
+and (max-width: 3840px) {
+
+  	.gallery-img {
+  		height: auto;
+  		width: 650px;
+  	}
+
+}

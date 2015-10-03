@@ -1,13 +1,12 @@
 angular.module("wdonahoeart.gallery", [
 	'ngResource',
 	'angular-wurfl-image-tailor',
-	'ui.router',
-	'slick'
+	'ui.router'
 ])
 .config(function($stateProvider){
 	$stateProvider
 		.state('gallery',{
-			abstract: true,
+			abstract: true, 
 			templateUrl: 'components/gallery/gallery.html'
 		})
 		.state('gallery.views', {
@@ -31,8 +30,22 @@ angular.module("wdonahoeart.gallery", [
 			}
 		});
 })
-.controller('SliderController', function($scope, drawings){
+.controller('SliderController', function($scope, $rootScope, drawings){
 	$scope.drawings = drawings.data;
+	$scope.loaded = true;
+})
+.directive('scrollPane',function(){
+	return {
+		restrict: 'E',
+		transclude: true,
+		template: '<div class="scroll-pane" ng-transclude></div>',
+		link: function(scope, element, attrs){
+			scope.$watch('loaded', function(val){
+				if (val)
+					element.jScrollPane({autoReinitialize:true});
+			});
+		}
+	}
 })
 .controller('GalleryImgController', function($scope, drawings){
 	$scope.currentDrawing = drawings.data[0];
