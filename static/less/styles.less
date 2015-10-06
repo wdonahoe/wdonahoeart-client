@@ -10,6 +10,10 @@
 
 @import "mixins.less";
 
+html, body {
+	height: 100%;
+}
+
 @media only screen
 and (min-device-width: 992px) {
 	#radio-buttons {
@@ -24,15 +28,16 @@ and (min-device-width: 992px) {
 }
 
 .scroll-pane {
-	width: 100%;
+	width: 200px;
 	height: 700px;
-	overflow: auto;
+	overflow: hidden;
 }
+
 
 .scroll-pane img {
 	height: auto;
 	width: 100%;
-	margin: 5px;
+	margin-bottom: 5px;
 	cursor: pointer;
 	z-index: 2;
 	opacity: 0.75;
@@ -47,19 +52,29 @@ and (min-device-width: 992px) {
 }
 
 .gallery-img {
-	height: auto;
-	width:75%;
+	height: 100%;
+	width:70%;
 }
 
 .gallery-flex-container {
 	padding: 0;
 	margin: 0;
+	width:100%;
 
 	display: flex;
+	display: -webkit-flex;
 
 	justify-content: flex-end;
 }
 
+@media only screen and (max-width: 780px){
+	.scroll-pane, disappear {
+		display: none;
+	}
+	.gallery-flex-container {
+		justify-content: center;
+	}
+}
 
 .fadez {
 	animation-name: fadeOutForm;

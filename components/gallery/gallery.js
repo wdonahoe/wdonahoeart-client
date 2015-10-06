@@ -30,23 +30,38 @@ angular.module("wdonahoeart.gallery", [
 			}
 		});
 })
-.controller('SliderController', function($scope, $rootScope, drawings){
+.controller('SliderController', function($scope, drawings){
 	$scope.drawings = drawings.data;
 	$scope.loaded = true;
+
+	$scope.changeImg = function(newDrawing){
+		$scope.$parent.$broadcast('galleryImageSwitch', newDrawing);
+	};
+
 })
-.directive('scrollPane',function(){
+.directive('scrollPane',function($timeout){
 	return {
-		restrict: 'E',
+		restrict: 'EA',
 		transclude: true,
-		template: '<div class="scroll-pane" ng-transclude></div>',
+		replace: true,
+		template: '<div class="scroll-pane"><div ng-transclude></div></div>',
 		link: function(scope, element, attrs){
 			scope.$watch('loaded', function(val){
-				if (val)
-					element.jScrollPane({autoReinitialize:true});
+				if (val){
+					$timeout(function(){
+						element.jScrollPane({ autoReinitialize:true });
+					}, 0);
+				}
 			});
 		}
 	}
 })
 .controller('GalleryImgController', function($scope, drawings){
 	$scope.currentDrawing = drawings.data[0];
+
+	$scope.$on('galleryImageSwitch', function(event, drawing){
+		if ($scope.$parent !== event.targetScope)
+			return;
+		$scope.currentDrawing = drawing;
+	});
 });
