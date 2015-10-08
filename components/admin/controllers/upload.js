@@ -5,8 +5,7 @@ admin.controller('UploadCtrl', ['apiFactory','$scope', '$timeout', '$state', fun
 
 	$scope.allFilled = function() {
 		var keys = _.keys($scope.data)
-		//return !(_.isEmpty(_.difference(data_keys, keys)) && $scope.file);
-		return false;
+		return !(_.isEmpty(_.difference(data_keys, keys)) && $scope.file);
 	}
 
 	$scope.upload = function(){
@@ -20,13 +19,13 @@ admin.controller('UploadCtrl', ['apiFactory','$scope', '$timeout', '$state', fun
 					$scope.myForm.$setPristine();
 					$scope.myForm.$setUntouched();
 					$scope.data = {};
-					imgUploaded = false;
+					imgUploaded = true;
 					$scope.loading = false;
 
 					var toGo = result.data.isBw ? "shades-of-gray" : "color";
 
 					$state.go('gallery.' + toGo);
-				}, 1500);
+				}, 150);
 				
 
 			}, function(error){

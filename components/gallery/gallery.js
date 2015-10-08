@@ -39,23 +39,6 @@ angular.module("wdonahoeart.gallery", [
 	};
 
 })
-.directive('scrollPane',function($timeout){
-	return {
-		restrict: 'EA',
-		transclude: true,
-		replace: true,
-		template: '<div class="scroll-pane"><div ng-transclude></div></div>',
-		link: function(scope, element, attrs){
-			scope.$watch('loaded', function(val){
-				if (val){
-					$timeout(function(){
-						element.jScrollPane({ autoReinitialize:true });
-					}, 0);
-				}
-			});
-		}
-	}
-})
 .controller('GalleryImgController', function($scope, drawings){
 	$scope.currentDrawing = drawings.data[0];
 
@@ -64,4 +47,42 @@ angular.module("wdonahoeart.gallery", [
 			return;
 		$scope.currentDrawing = drawing;
 	});
+})
+.directive('galleryImg', function($timeout){
+	return {
+		restrict: 'E',
+		replace: true,
+		scope: {
+			drawing: "=",
+			filter: "="
+		},
+		template: '<img ng-src="{{drawing.url | filter}}" alt="{{drawing.title}}">',
+		link: function(scope, element, attrs){
+			if (scope.drawing.width > scope.drawing.height){
+				element.addClass("wide");
+			} else {
+				element.addClass("tall");
+			}
+		}
+	}
+})
+.directive('scrollPane',function($timeout){
+	return {
+		restrict: 'EA',
+		transclude: true,
+		replace: true,
+		template: '<div class="scroll-pane"><div ng-transclude></div></div>',
+		link: function(scope, element, attrs){
+			var reinitialize = function(){
+				element.jScrollPane();
+				return scope.pane = element.data('jsp');
+			}
+			$timeout(reinitialize, 0);
+			scope.$watch('loaded', function(val){
+				if (val){
+					$timeout(reinitialize, 0);
+				}
+			});
+		}
+	}
 });
