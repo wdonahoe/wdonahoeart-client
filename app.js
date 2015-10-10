@@ -39,21 +39,18 @@ app.constant('API_URL','http://localhost:8080/api')
 		request: function(config){
 			var token = jwtAuthFactory.getToken();
 			if (config.url.indexOf(API_URL) === 0 && token){
-				console.log("Making request to api with token...");
 				config.headers.authorization = 'Bearer ' + token;
 			}
 			return config;
 		},
 		response: function(res){
 			if (res.config.url.indexOf(API_URL) === 0 && res.data.id_token){
-				console.log("storing token: " + res.data.id_token);
 				jwtAuthFactory.storeToken(res.data.id_token, res.data.user);
 			}
 			return res;
 		},
 		responseError: function(rejection){
 			if (rejection.status === 401){
-				console.log("Response Error 401:", rejection);
 				$injector.get('$state').go('login');
 				return $q.reject(rejection);
 			}

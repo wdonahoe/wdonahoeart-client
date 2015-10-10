@@ -13,7 +13,8 @@
     "ng-file-upload": "~6.0.4",
     "aws-sdk-js": "~2.1.44",
     "ui-router-extras": "~0.0.14",
-    "angular-scroll-pane": "~1.1.1"
+    "angular-scroll-pane": "~1.1.1",
+    "angular-animate": "~1.4.7"
   },
   "ignore": [
     "**/.*",

@@ -10,6 +10,9 @@
 
 @import "mixins.less";
 
+a, a:active, a:focus {
+	outline: none;
+}
 html, body {
 	height: 100%;
 }
@@ -31,6 +34,7 @@ and (min-device-width: 992px) {
 	width: 200px;
 	height: 700px;
 	overflow: hidden;
+	outline: none;
 }
 
 
@@ -52,13 +56,19 @@ and (min-device-width: 992px) {
 }
 
 .tall {
-	width: 65%;
+	width: 53%;
 	height: auto;
 }
 
 .wide {
-	width: 90%;
+	width: 85%;
 	max-height: 1000px;
+}
+
+.img-info {
+	margin-top: 10px;
+	flex: 2 100%;
+	text-align: center;
 }
 
 .gallery-flex-container {
@@ -68,16 +78,13 @@ and (min-device-width: 992px) {
 
 	display: flex;
 	display: -webkit-flex;
-
+	flex-flow: row wrap;
 	justify-content: center;
 }
 
-@media only screen and (max-width: 780px){
+@media only screen and (max-width: 992px){
 	.scroll-pane, disappear {
 		display: none;
-	}
-	.gallery-flex-container {
-		justify-content: center;
 	}
 }
 
@@ -90,7 +97,7 @@ and (min-device-width: 992px) {
 
 .fadeIn {
 	animation-name: fadeInImage;
-	animation-duration: 0.6s;
+	animation-duration: 0.35s;
 	animation-fill-mode: forwards;
 }
 

@@ -17,15 +17,13 @@ admin.controller('UploadCtrl', ['apiFactory','$scope', '$timeout', '$state', fun
 				$timeout(function(){
 
 					$scope.myForm.$setPristine();
-					$scope.myForm.$setUntouched();
 					$scope.data = {};
 					imgUploaded = true;
-					$scope.loading = false;
 
 					var toGo = result.data.isBw ? "shades-of-gray" : "color";
 
-					$state.go('gallery.' + toGo);
-				}, 150);
+					$state.go('gallery.views', {gallery: toGo});
+				}, 200);
 				
 
 			}, function(error){
