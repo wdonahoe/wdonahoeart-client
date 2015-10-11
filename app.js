@@ -3,7 +3,8 @@ var app = angular.module('wdonahoeart', [
 	'wdonahoeart.login',
 	'wdonahoeart.jwtAuth',
 	'wdonahoeart.admin',
-	'wdonahoeart.gallery'
+	'wdonahoeart.gallery',
+	'wdonahoeart.text'
 ]);
 
 app.constant('API_URL','http://localhost:8080/api')

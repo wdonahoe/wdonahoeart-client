@@ -6803,6 +6803,20 @@ body {
 .scroll-pane img:hover {
   opacity: 1;
 }
+.jspDrag:hover {
+  background-color: #d4d4d4;
+}
+.jspDrag.jspActive {
+  background-color: #d4d4d4;
+}
+.jspDrag {
+  -webkit-transition: top 1s ease-out;
+  -moz-transition: top 1s ease-out;
+  transition: top 1s ease-out;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  -moz-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
+}
 .tall {
   width: 53%;
   height: auto;
@@ -6812,7 +6826,7 @@ body {
   max-height: 1000px;
 }
 .img-info {
-  margin-top: 10px;
+  margin-top: 20px;
   flex: 2 100%;
   text-align: center;
 }
@@ -6825,9 +6839,23 @@ body {
   flex-flow: row wrap;
   justify-content: center;
 }
+.bio-flex-container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  flex-flow: row wrap;
+  justify-content: right;
+}
+.bio-flex-container img {
+  width: 85%;
+  max-height: 1000px;
+}
 @media only screen and (max-width: 992px) {
   .scroll-pane,
-  disappear {
+  disappear,
+  .bio-flex-container img {
     display: none;
   }
 }

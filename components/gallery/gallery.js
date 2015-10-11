@@ -1,6 +1,5 @@
 angular.module("wdonahoeart.gallery", [
 	'ngResource',
-	'ngAnimate',
 	'ui.router'
 ])
 .config(function($stateProvider){
@@ -10,7 +9,7 @@ angular.module("wdonahoeart.gallery", [
 			templateUrl: 'components/gallery/gallery.html'
 		})
 		.state('gallery.views', {
-			url: '/{gallery}',
+			url: "/{gallery:shades-of-gray|color}",
 			views: {
 				'left@gallery': {
 					templateUrl: 'components/gallery/partials/gallery-slick.html',
@@ -45,7 +44,6 @@ angular.module("wdonahoeart.gallery", [
 })
 .controller('GalleryImgController', function($scope, drawings){
 	$scope.currentDrawing = drawings.data[0];
-	$scope.hoverDrawing = null;
 
 	$scope.$on('galleryImageSwitch', function(event, drawing){
 		if ($scope.$parent !== event.targetScope)
@@ -57,7 +55,6 @@ angular.module("wdonahoeart.gallery", [
 		if ($scope.$parent !== event.targetScope)
 			return;
 		$scope.hoverDrawing = drawing;
-		console.log($scope.hoverDrawing);
 	});
 
 })
@@ -69,18 +66,8 @@ angular.module("wdonahoeart.gallery", [
 			drawing: '='
 		},
 		template: '<div class="img-info">' +
-					'<strong>{{title}}</strong>  &nbsp&nbsp {{dimensions}} &nbsp&nbsp{{medium}}' +
-				 '</div>',
-		controller: ['$scope', function($scope){
-			$scope.watch('drawing', function(){
-				$scope.title = $scope.drawing === null ? '' : $scope.drawing.title;
-				$scope.height = $scope.drawing === null ? '' : $scope.drawing.height;
-				$scope.width = $scope.drawing === null ? '' : $scope.drawing.width;
-				$scope.medium = $scope.drawing === null ? '' : $scope.drawing.medium;
-
-				$scope.dimensions = $scope.height === null || $scope.width === null ? $scope.height + '\" x ' + $scope.width + '\"' : '';
-			})
-		}]
+				  '    <b>{{drawing.title}}</b>  &nbsp&nbsp {{drawing.dimensions}} &nbsp&nbsp{{drawing.medium}}' +
+				  '</div>'
 	};
 })
 .directive('galleryImg', function($timeout){
@@ -116,14 +103,15 @@ angular.module("wdonahoeart.gallery", [
 		replace: true,
 		template: '<div class="scroll-pane"><div ng-transclude></div></div>',
 		link: function(scope, element, attrs){
+
 			var reinitialize = function(){
-				element.jScrollPane();
+				element.jScrollPane({animateScroll:true});
 				return scope.pane = element.data('jsp');
 			}
 			$timeout(reinitialize, 0);
 			scope.$watch('loaded', function(val){
 				if (val){
-					$timeout(reinitialize, 0);
+					$timeout(reinitialize, 1);
 				}
 			});
 		}
