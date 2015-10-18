@@ -22,7 +22,7 @@ app.constant('API_URL','http://localhost:8080/api')
 		return $sce.trustAsResourceUrl(url);
 	};
 })
-.run(function($rootScope, $state, jwtAuthFactory){
+.run(function($rootScope, jwtAuthFactory){
 
 	$rootScope.$on('$stateChangeStart', function(e, to){
 		if (to.data && to.data.requiresLogin){

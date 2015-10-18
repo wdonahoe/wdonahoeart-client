@@ -53,34 +53,15 @@ angular.module('wdonahoeart.api', [
 		});
 	};
 
-	apiFactory.getImageUrls = function(isBw){
-		var urlParam = isBw ? 'bw' : 'color';
+	apiFactory.getImageUrls = function(gallery){
+		if (gallery === undefined)
+			var gallery = 'all'
+
 		return $http({
 			method: 'GET',
-			url: API_URL + '/drawings/' + urlParam
+			url: API_URL + '/drawings/' + gallery
 		});
 	};
-
-	apiFactory.uploadGulp = function(file, fileData){
-		return $http.post(API_URL + '/upload_gulp',
-			{
-				file: file,
-				fileData: fileData
-			},
-			{
-				transformRequest: function(data){
-					var formData = new FormData();
-
-					formData.append("data", JSON.stringify(data.fileData));
-					formData.append("file", data.file);
-
-					return formData;
-				},
-				headers: {
-					'Content-Type': undefined
-			}
-		});
-	}
 
 	return apiFactory;
 }]);

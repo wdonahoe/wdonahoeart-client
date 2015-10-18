@@ -23,15 +23,19 @@ angular.module("wdonahoeart.gallery", [
 			resolve: {
 				apiFactory: 'apiFactory',
 				drawings: function(apiFactory, $stateParams){
-					var galleryType = $stateParams.gallery == 'color' ? false : true;
-					return apiFactory.getImageUrls(galleryType);
+					var param = $stateParams.gallery === 'color' ? 'color' : 'bw';
+					return apiFactory.getImageUrls($stateParams.param)
+						.then(function(result){
+							return _.get(result.data, param);
+					});
 				}
 			}
 		});
 })
 .controller('SliderController', function($scope, drawings){
-	$scope.drawings = drawings.data;
-	$scope.loaded = true;
+	$scope.drawings = drawings;
+	$scope.loadedDrawings = [];
+	$scope.loaded = false;
 
 	$scope.changeImg = function(newDrawing){
 		$scope.$parent.$broadcast('galleryImageSwitch', newDrawing);
@@ -41,9 +45,17 @@ angular.module("wdonahoeart.gallery", [
 		$scope.$parent.$broadcast('sliderHover', hoverDrawing);
 	};
 
+	// $scope.loadDrawing = function(drawing){
+	// 	console.log(drawing);
+	// 	$scope.loadedDrawings.push(drawing);
+	// }
+
+	// if ((_.difference($scope.drawings, $scope.loadedDrawings)).length === 0)
+	// 	$scope.loaded = true;
+
 })
 .controller('GalleryImgController', function($scope, drawings){
-	$scope.currentDrawing = drawings.data[0];
+	$scope.currentDrawing = drawings[0];
 
 	$scope.$on('galleryImageSwitch', function(event, drawing){
 		if ($scope.$parent !== event.targetScope)
@@ -91,7 +103,7 @@ angular.module("wdonahoeart.gallery", [
 				if (newVal === oldVal) 
 					return;
 				element.addClass("fadeIn");
-				$timeout(function(){element.removeClass("fadeIn")}, 350);
+				$timeout(function(){element.removeClass("fadeIn")}, 450);
 			});
 		}
 	}
@@ -102,18 +114,43 @@ angular.module("wdonahoeart.gallery", [
 		transclude: true,
 		replace: true,
 		template: '<div class="scroll-pane"><div ng-transclude></div></div>',
+		scope: {
+			length: '@'
+		},
+		controller: function($scope, $element, $attrs){
+			$scope.loaded = false;
+			$scope.numLoaded = 0;
+
+			this.addLoadedDrawing = function(){
+				$scope.numLoaded++;
+				if ($scope.numLoaded == $scope.length){
+					$scope.loaded = true;
+				}
+			}
+
+		},
 		link: function(scope, element, attrs){
 
 			var reinitialize = function(){
 				element.jScrollPane({animateScroll:true});
 				return scope.pane = element.data('jsp');
 			}
-			$timeout(reinitialize, 0);
 			scope.$watch('loaded', function(val){
 				if (val){
-					$timeout(reinitialize, 1);
+					reinitialize();
 				}
 			});
 		}
 	}
-});
+})
+.directive('imageonload', function(){
+	return {
+		restrict: 'A',
+		require: '^scrollPane',
+		link: function(scope, element, attrs, scrollPaneCtrl){
+			element.bind('load', function(){
+				scrollPaneCtrl.addLoadedDrawing();
+			});
+		}
+	}
+})
