@@ -45,14 +45,6 @@ angular.module("wdonahoeart.gallery", [
 		$scope.$parent.$broadcast('sliderHover', hoverDrawing);
 	};
 
-	// $scope.loadDrawing = function(drawing){
-	// 	console.log(drawing);
-	// 	$scope.loadedDrawings.push(drawing);
-	// }
-
-	// if ((_.difference($scope.drawings, $scope.loadedDrawings)).length === 0)
-	// 	$scope.loaded = true;
-
 })
 .controller('GalleryImgController', function($scope, drawings){
 	$scope.currentDrawing = drawings[0];
@@ -92,12 +84,12 @@ angular.module("wdonahoeart.gallery", [
 			filter: "="
 		},
 		template: '<img ng-src="{{drawing.url | filter}}" alt="{{drawing.title}}" ng-class="tallOrWide()">',
-		controller: ['$scope', function($scope){
+		controller: function($scope){
 			$scope.tallOrWide = function(){
 				var tall =  Number($scope.drawing.height) > Number($scope.drawing.width);
 				return {tall: tall, wide: !tall};
 			}
-		}],
+		},
 		link: function(scope, element, attrs){
 			scope.$watch('drawing', function(newVal, oldVal){
 				if (newVal === oldVal) 
@@ -123,21 +115,18 @@ angular.module("wdonahoeart.gallery", [
 
 			this.addLoadedDrawing = function(){
 				$scope.numLoaded++;
+				console.log($scope.numLoaded);
 				if ($scope.numLoaded == $scope.length){
 					$scope.loaded = true;
+					$scope.$apply();
 				}
 			}
 
 		},
 		link: function(scope, element, attrs){
-
-			var reinitialize = function(){
-				element.jScrollPane({animateScroll:true});
-				return scope.pane = element.data('jsp');
-			}
 			scope.$watch('loaded', function(val){
 				if (val){
-					reinitialize();
+					element.jScrollPane({animateScroll:true});
 				}
 			});
 		}

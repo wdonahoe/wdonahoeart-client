@@ -49,8 +49,9 @@ angular.module('wdonahoeart.api', [
 				},
 				headers: {
 					'Content-Type': undefined
+				}
 			}
-		});
+		);
 	};
 
 	apiFactory.getImageUrls = function(gallery){
