@@ -54,6 +54,15 @@ angular.module('wdonahoeart.api', [
 		);
 	};
 
+	apiFactory.reorderDrawings = function(drawings){
+
+		return $http({
+			method: 'POST',
+			url: API_URL + '/drawings/reorder',
+			data: {bw: drawings.bw, color: drawings.color}
+		});
+	}
+
 	apiFactory.getImageUrls = function(gallery){
 		if (gallery === undefined)
 			var gallery = 'all'

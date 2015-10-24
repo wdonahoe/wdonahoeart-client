@@ -1,6 +1,7 @@
 var admin = angular.module('wdonahoeart.admin',[
 	'ngResource',
-	'ui.router'
+	'ui.router',
+	'dndLists'
 ]);
 
 admin.config(function($stateProvider){
@@ -27,15 +28,35 @@ admin.config(function($stateProvider){
 					return apiFactory.getImageUrls();
 				}
 			},
-			controller: function(drawings){
+			controller: ['drawings', 'apiFactory', '$state', function(drawings, apiFactory, $state){
 				this.drawings = drawings.data;
-			},
+				this.orig = this.drawings;
+
+				this.reorder = function(){
+					var self = this;
+					if (_.every(self.drawings, self.orig)){
+						return false;
+					} else { 
+						apiFactory.reorderDrawings(self.drawings).then(function(){
+							if (!_.every(self.drawings.bw, self.orig.bw))
+								$state.go('gallery.views', {gallery: 'shades-of-gray'});
+							else
+								$state.go('gallery.views', {gallery: 'color'});
+						});
+					}
+				}
+			}],
 			controllerAs:'ctrl'
 		})
-		.state('admin.edit-document', {
-			url: '/edit-document',
-			templateUrl: 'components/admin/partials/admin.edit-document.html',
-			controller: 'DocEditCtrl'
+		.state('admin.edit-drawing', {
+			url: '/edit/{title}',
+			templateUrl: 'components/admin/partials/admin.edit-drawing.html',
+			resolve: {
+				apiFactory: 'apiFactory',
+				drawing: function(apiFactory, $stateParams){
+					return apiFactory.getDrawing($stateParams.title);
+				}
+			}
 		});
 
 })
@@ -46,23 +67,9 @@ admin.config(function($stateProvider){
 		bindToController: {
 			drawings: '='
 		},
-		template: '<div ng-repeat="drawing in ctrl.drawings">' +
-					'<ul><edit-drawing title="{{drawing.title}}"></edit-drawing></ul>' +
-				  '</div>',
-		controller: function(){},
+		templateUrl: 'components/admin/partials/admin.edit-list.html',
+		controller: ['apiFactory', '$state', function(apiFactory, $state){	
+		}],
 		controllerAs: 'ctrl',
-	}
-})
-.directive('editDrawing', function(){
-	return {
-		restrict: 'E',
-		scope: {},
-		bindToController: {
-			title: '@'
-		},
-		template: '<li>{{ctrl.title}}</li>',
-		controller: function(){},
-		controllerAs: 'ctrl',
-		require: '^editList'
 	}
 })

@@ -40,7 +40,7 @@
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right" ng-show="app.isAuthed()">
-						<li><a ui-sref="admin.upload">Admin Panel</a></li>
+						<li><a ui-sref="admin.upload"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;Admin Panel</a></li>
 						<li><button class="btn btn-default navbar-btn" ng-click="app.logout()">Logout</button></li>
 					</ul>
 				</div>
@@ -69,6 +69,8 @@
 
 		<!-- Bootstrap javascript -->
 		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+
+		<script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js" type="text/javascript"></script>
 
 		<!-- My Modules -->
 		<script src="app.js" type="text/javascript"></script>

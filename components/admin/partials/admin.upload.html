@@ -1,6 +1,6 @@
 
 	<div ng-controller="UploadCtrl">
-		<div class="col-md-6 col-xs-12">
+		<div class="col-md-7 col-xs-12">
 			<spinner></spinner>
 			<form novalidate name="myForm" role="form" fade-out>
 			<h1>Upload</h1>
@@ -55,17 +55,14 @@
 			<!-- Upload -->
 			<div class="form-group">
 				<label for="gallery-upload" class="control-label" control-label>Select File</label><br />
-				<div class="col-md-6" id="gallery-upload">
+				<div id="gallery-upload">
 					<div file-input="file" on-change="readFile()"></div>
 				</div>
-			</div><br />
+			</div>
 
 			<button class="btn btn-default" ng-click="upload()" ng-disabled="allFilled()">Submit</button>
 
 			</form>
 		</div>
 
-		<div class="col-sm-6">
-			
-		</div>
 	</div>

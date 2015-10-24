@@ -1,0 +1,9 @@
+<ul class="edit-list" dnd-list="ctrl.drawings">
+	<li ng-repeat="drawing in ctrl.drawings"
+		dnd-draggable="drawing"
+		dnd-moved="ctrl.drawings.splice($index, 1)"
+		dnd-effect-allowed="move"
+		>
+		{{drawing.title}}
+	</li>
+</ul>
