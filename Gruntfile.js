@@ -20,7 +20,7 @@ module.exports = function(grunt){
 				files: ['static/less/*.less'],
 				tasks: ['less']
 			}
-		}
+		},
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-watch');

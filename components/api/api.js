@@ -54,6 +54,29 @@ angular.module('wdonahoeart.api', [
 		);
 	};
 
+	apiFactory.editDrawing = function(file, drawing){
+		return $http.put(API_URL + '/drawing/' + drawing._id,
+			{
+				file: file ? file : undefined,
+				drawing: _.omit(drawing, 'dimensions')
+			},
+			{
+				transformRequest: function(data){
+					var formData = new FormData();
+
+					formData.append("drawing", JSON.stringify(data.drawing));
+					formData.append("file", data.file);
+
+					return formData;
+				},
+				headers: {
+					'Content-Type': undefined
+				}
+			}
+		);
+	};
+
+
 	apiFactory.reorderDrawings = function(drawings){
 
 		return $http({
@@ -72,6 +95,15 @@ angular.module('wdonahoeart.api', [
 			url: API_URL + '/drawings/' + gallery
 		});
 	};
+
+	apiFactory.getDrawing = function(id){
+
+		return $http({
+			method: 'GET',
+			url: API_URL + '/drawing/' + id
+		});
+
+	}
 
 	return apiFactory;
 }]);

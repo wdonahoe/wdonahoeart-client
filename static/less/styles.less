@@ -10,6 +10,10 @@
 
 @import "mixins.less";
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+ }
+
 a, a:active, a:focus {
 	outline: none;
 }
@@ -73,7 +77,8 @@ and (min-device-width: 992px) {
 
 .scroll-pane img {
 	height: auto;
-	width: 100%;
+	width: 170px;
+	margin:0em 0.5em;
 	margin-bottom: 5px;
 	cursor: pointer;
 	z-index: 2;
@@ -118,6 +123,7 @@ and (min-device-width: 992px) {
 
 .img-info {
 	margin-top: 20px;
+	padding-bottom: 20px;
 	flex: 2 100%;
 	text-align: center;
 }
@@ -126,6 +132,14 @@ and (min-device-width: 992px) {
 	padding: 0;
 	margin: 0;
 	width:100%;
+
+	display: flex;
+	display: -webkit-flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+.preview-flex-container {
 
 	display: flex;
 	display: -webkit-flex;
@@ -173,6 +187,13 @@ and (min-device-width: 992px) {
 	z-index:1;
 	top: 40%;
 	left: 90%;
+}
+
+.upload-preview {
+	padding:20px 20px 0 20px;
+	width: 100%;
+	height: auto;
+	opacity: 0;
 }
 
 @-webkit-keyframes fadeInImage {.opacity(0.0, 1.0);}

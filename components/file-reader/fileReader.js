@@ -2,7 +2,7 @@ angular.module('wdonahoeart.fileReader', [
 ])
 .factory('fileReaderFactory', ['$q', '$log', function($q, $log){
 
-	var onLoad = function(reader, deferred, scope) {
+	   var onLoad = function(reader, deferred, scope) {
             return function () {
                 scope.$apply(function () {
                     deferred.resolve(reader.result);
@@ -40,14 +40,14 @@ angular.module('wdonahoeart.fileReader', [
             var deferred = $q.defer();
              
             var reader = getReader(deferred, scope);    
-            reader.readAsText(file);
+            reader.readAsDataURL(file);
              
             return deferred.promise;
         };
 
 
 	return {
-        readAsText: readAsText
+        readAsDataURL: readAsDataURL
     };
 
 }]);

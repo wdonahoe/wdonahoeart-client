@@ -69,7 +69,7 @@ angular.module("wdonahoeart.gallery", [
 		scope: {
 			drawing: '='
 		},
-		template: '<div class="img-info">' +
+		template: '<div class="img-info" ng-cloak>' +
 				  '    <b>{{drawing.title}}</b>  &nbsp&nbsp {{drawing.dimensions}} &nbsp&nbsp{{drawing.medium}}' +
 				  '</div>'
 	};
@@ -115,7 +115,6 @@ angular.module("wdonahoeart.gallery", [
 
 			this.addLoadedDrawing = function(){
 				$scope.numLoaded++;
-				console.log($scope.numLoaded);
 				if ($scope.numLoaded == $scope.length){
 					$scope.loaded = true;
 					$scope.$apply();

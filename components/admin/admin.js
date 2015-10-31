@@ -1,7 +1,8 @@
 var admin = angular.module('wdonahoeart.admin',[
 	'ngResource',
 	'ui.router',
-	'dndLists'
+	'dndLists',
+	'wdonahoeart.fileReader'
 ]);
 
 admin.config(function($stateProvider){
@@ -46,17 +47,55 @@ admin.config(function($stateProvider){
 					}
 				}
 			}],
-			controllerAs:'ctrl'
+			controllerAs: 'ctrl'
 		})
 		.state('admin.edit-drawing', {
-			url: '/edit/{title}',
+			url: '/edit/{id}',
 			templateUrl: 'components/admin/partials/admin.edit-drawing.html',
 			resolve: {
 				apiFactory: 'apiFactory',
 				drawing: function(apiFactory, $stateParams){
-					return apiFactory.getDrawing($stateParams.title);
+					return apiFactory.getDrawing($stateParams.id);
 				}
-			}
+			},
+			controller: ['drawing','$scope','apiFactory', 'fileReaderFactory', '$timeout', '$state', function(drawing, $scope, apiFactory, fileReader, $timeout, $state){
+				var self = this;
+				self.drawing = drawing.data;
+				self.imgSrc = self.drawing.url;
+
+				var data_keys = ['title','medium','width','height','isBw'];
+				self.allFilled = function() {
+					var keys = _.keys(self.drawing)
+					return !(_.isEmpty(_.difference(data_keys, keys)));
+				}
+
+				self.getFile = function(){
+					fileReader.readAsDataURL($scope.file, $scope)
+						.then(function(result){
+							self.imgSrc = result;
+						});
+				}
+
+				self.upload = function(){
+					$scope.loading = true;
+
+					apiFactory.editDrawing($scope.file, self.drawing)
+						.then(function(result){		
+							$timeout(function(){
+								self.myForm.$setPristine();
+								
+
+								var toGo = result.data.isBw ? "shades-of-gray" : "color";
+								$state.go('gallery.views', {gallery: toGo});
+							}, 500);
+						}, function(error){
+							console.log(error);
+						}
+					);
+				}
+
+			}],
+			controllerAs: 'ctrl'
 		});
 
 })
@@ -72,4 +111,4 @@ admin.config(function($stateProvider){
 		}],
 		controllerAs: 'ctrl',
 	}
-})
+});

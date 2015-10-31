@@ -4,6 +4,6 @@
 		dnd-moved="ctrl.drawings.splice($index, 1)"
 		dnd-effect-allowed="move"
 		>
-		{{drawing.title}}
+		<a ui-sref="admin.edit-drawing({id: drawing._id})">{{drawing.title}}</a>
 	</li>
 </ul>

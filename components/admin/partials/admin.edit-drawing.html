@@ -1,16 +1,15 @@
 
-	<div ng-controller="UploadCtrl as ctrl">
 		<div class="col-md-5 col-xs-12 full-width">
 			<spinner></spinner>
 			<form novalidate name="ctrl.myForm" role="form" fade-out>
-			<h1>Upload</h1>
+			<h1>Edit</h1>
 
 			<!-- Title -->
 			<div class="form-group">
 				<div class="row">
 					<div class="col-xs-11">
 						<label for="title" class="control-label" control-label>Title</label>
-						<input type="text" class="form-control" name="title" ng-model="ctrl.data.title" placeholder="Title"/>
+						<input type="text" class="form-control" name="title" ng-model="ctrl.drawing.title" autosave="false" placeholder="Title"/>
 					</div>
 				</div>
 			</div>
@@ -19,7 +18,7 @@
 				<div class="row">
 					<div class="col-xs-11">
 						<label for="medium" class="control-label" control-label>Medium</label>
-						<input type="text" class="form-control" name="medium" ng-model="ctrl.data.medium" placeholder="Medium"/>
+						<input type="text" class="form-control" name="medium" ng-model="ctrl.drawing.medium" placeholder="Medium"/>
 					</div>
 				</div>
 			</div>
@@ -29,11 +28,11 @@
 				<div class="row">
 					<div class="col-xs-5">
 						<label for="height" class="control-label" control-label>Height</label>
-						<input type="text" class="form-control" name="height" ng-model="ctrl.data.height" placeholder="Height (in)"/>	
+						<input type="text" class="form-control" name="height" ng-model="ctrl.drawing.height" placeholder="Height (in)"/>	
 					</div>
 					<div class="col-xs-5">
 						<label for="width" class="control-label" control-label>Width</label>
-						<input type="text" class="form-control" name="width" ng-model="ctrl.data.width" placeholder="Width (in)"/>
+						<input type="text" class="form-control" name="width" ng-model="ctrl.drawing.width" placeholder="Width (in)"/>
 					</div>
 				</div>
 			</div>
@@ -43,10 +42,10 @@
 				<label class="control-label" control-label>Gallery</label>
 				<div>
 					<label class="radio-inline">
-						<input type="radio" name="type" value=true ng-model="ctrl.data.isBw" /> Gray
+						<input type="radio" name="type" value=true ng-checked="{{ctrl.drawing.isBw}}"/> Gray
 						</label>
 					<label class="radio-inline">
-						<input type="radio" name="type" value=false ng-model="ctrl.data.isBw" /> Color
+						<input type="radio" name="type" value=false ng-checked="{{!ctrl.drawing.isBw}}"/> Color
 					</label>
 				</div>
 			</div>
@@ -64,11 +63,9 @@
 
 			</form>
 		</div>
-		<div class="col-md-7 preview-flex-container">
-			<img ng-src="{{ctrl.imgSrc}}" class="upload-preview" fade-out fade-in>
-			<div class="img-info" ng-hide="ctrl.allFilled()">
-				<b>{{ctrl.data.title}}</b>  &nbsp&nbsp {{ctrl.data.height}}" x {{ctrl.data.width}}" &nbsp&nbsp{{ctrl.data.medium}}
+		<div class="col-md-7 preview-flex-container" fade-out>
+			<img ng-src="{{ctrl.imgSrc}}" class="upload-preview" fade-in>
+			<div class="img-info" ng-cloak>
+				<b>{{ctrl.drawing.title}}</b>  &nbsp&nbsp {{ctrl.drawing.height}}" x {{ctrl.drawing.width}}" &nbsp&nbsp{{ctrl.drawing.medium}}
 			</div>
 		</div>
-
-	</div>
