@@ -92,7 +92,8 @@ angular.module('wdonahoeart.api', [
 
 		return $http({
 			method: 'GET',
-			url: API_URL + '/drawings/' + gallery
+			url: API_URL + '/drawings/' + gallery,
+			cache: true
 		});
 	};
 
@@ -100,7 +101,8 @@ angular.module('wdonahoeart.api', [
 
 		return $http({
 			method: 'GET',
-			url: API_URL + '/drawing/' + id
+			url: API_URL + '/drawing/' + id,
+			cache: true
 		});
 
 	}

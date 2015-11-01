@@ -14,6 +14,22 @@
     display: none !important;
  }
 
+.slide-down {
+	animation-name: slideDown, fadeInImage;
+	animation-duration: 1s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+
+}
+
+.slide-up {
+	animation-name: slideUp, fadeInImage;
+	animation-duration: 1.1s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+
+}
+
 a, a:active, a:focus {
 	outline: none;
 }
@@ -195,6 +211,18 @@ and (min-device-width: 992px) {
 	height: auto;
 	opacity: 0;
 }
+
+@-webkit-keyframes slideDown {from { top: -@navbar-height; } to { top: 0; }}
+@-moz-keyframes slideDown {from { top: -@navbar-height; } to { top: 0; }}
+@-ms-keyframes slideDown {from { top: -@navbar-height; } to { top: 0; }}
+@-o-keyframes slideDown {from { top: -@navbar-height; } to { top: 0; }}
+@keyframes slideDown {from { top: -@navbar-height; } to { top: 0; }}
+
+@-webkit-keyframes slideUp {from { transform: translateY(200px); } to { transform: translateY(0); }}
+@-moz-keyframes slideUp {from { transform: translateY(200px); } to { transform: translateY(0); }}
+@-ms-keyframes slideUp {from { transform: translateY(200px); } to { transform: translateY(0); }}
+@-o-keyframes slideUp {from { transform: translateY(200px); } to { transform: translateY(0); }}
+@keyframes slideUp {from { transform: translateY(200px); } to { transform: translateY(0); }}
 
 @-webkit-keyframes fadeInImage {.opacity(0.0, 1.0);}
 @-moz-keyframes fadeInImage {.opacity(0.0, 1.0);}

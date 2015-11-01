@@ -1,4 +1,4 @@
-<scroll-pane length="{{drawings.length}}">
+<scroll-pane length="{{drawings.length}}" class="slide-up">
 	<div ng-repeat="drawing in drawings">
 		<img ng-click="changeImg(drawing)" ng-mouseenter="changeInfo(drawing)" ng-mouseleave="changeInfo({title:'',medium:'',dimensions:''})" ng-src="{{drawing.url | trusted}}" class="carousel-img" imageonload/>
 	</div>
