@@ -1,5 +1,6 @@
 angular.module("wdonahoeart.gallery", [
 	'ngResource',
+	'ngTouch',
 	'ui.router'
 ])
 .config(function($stateProvider){
@@ -47,12 +48,22 @@ angular.module("wdonahoeart.gallery", [
 
 })
 .controller('GalleryImgController', function($scope, drawings){
-	$scope.currentDrawing = drawings[0];
+	$scope.index = 0;
+	$scope.currentDrawing = drawings[$scope.index];
 
 	$scope.$on('galleryImageSwitch', function(event, drawing){
-		if ($scope.$parent !== event.targetScope)
-			return;
-		$scope.currentDrawing = drawing;
+		if (drawing.index === undefined){
+			$scope.currentDrawing = drawing;
+			$scope.index = _.findIndex(drawings, {'_id': drawing._id });
+		}
+		else {
+			if (drawing.index > drawings.length){
+				drawing.index = 0;
+			}
+			$scope.currentDrawing = drawings[drawing.index];
+			$scope.index = drawing.index;
+			$scope.$apply();
+		}
 	});
 
 	$scope.$on('sliderHover', function(event, drawing){
@@ -74,23 +85,70 @@ angular.module("wdonahoeart.gallery", [
 				  '</div>'
 	};
 })
-.directive('galleryImg', function($timeout){
+.directive('galleryImg', function($timeout, $swipe, $window){
 	return {
 		restrict: 'E',
 		replace: true,
 		transclude: true,
 		scope: {
 			drawing: "=",
+			index: "=",
 			filter: "="
 		},
 		template: '<img ng-src="{{drawing.url | filter}}" alt="{{drawing.title}}" ng-class="tallOrWide()">',
 		controller: function($scope){
+			
 			$scope.tallOrWide = function(){
 				var tall =  Number($scope.drawing.height) > Number($scope.drawing.width);
 				return {tall: tall, wide: !tall};
 			}
 		},
 		link: function(scope, element, attrs){
+			var startX;
+			var deltaX;
+			var w = angular.element($window);
+			var opacity;
+			var abs;
+
+			scope.$watch(function(){
+				return w.width();
+			}, function(newWidth, oldWidth){
+				if (newWidth <= 991 && oldWidth > 991 || (newWidth - oldWidth) === 0){
+					$swipe.bind(element, {
+						'start': function(coords){
+							startX = coords.x;
+							console.log(startX);
+						},
+						'move': function(coords){
+							deltaX = coords.x - startX;
+							console.log(deltaX);
+							element.css({
+								'transform': 'translateX('+deltaX+'px)',
+								'opacity': -0.005 * Math.abs(deltaX) + 1
+							});
+						},
+						'end': function(coords){
+							if (deltaX < 0 && Math.abs(deltaX) >= 100){
+								scope.$emit('galleryImageSwitch', {drawing: undefined, index: scope.index + 1});
+							} else if (deltaX > 100){
+								scope.$emit('galleryImageSwitch', {drawing: undefined, index: scope.index > 0 ? scope.index - 1 : 0});
+							}
+							element.css({
+								'transform': 'translateX(0px)',
+								'opacity': 1
+							});
+							return;
+						}
+					});
+				} else if (newWidth >= 991 && oldWidth < 991){
+					element.unbind('mousedown mousemove mouseup touchstart touchmove touchend touchcancel');				
+				}
+			}, true);
+
+			w.bind('resize', function(){
+				scope.$apply();
+			})
+
 			scope.$watch('drawing', function(newVal, oldVal){
 				if (newVal === oldVal) 
 					return;
@@ -125,7 +183,7 @@ angular.module("wdonahoeart.gallery", [
 		link: function(scope, element, attrs){
 			scope.$watch('loaded', function(val){
 				if (val){
-					element.jScrollPane({animateScroll:true});
+					element.jScrollPane({animateScroll:true, autoreinitialize:true});
 				}
 			});
 		}
