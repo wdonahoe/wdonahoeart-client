@@ -1,23 +1,39 @@
 {
   "name": "wdonahoeart-client",
-  "dependencies": {
-    "angularjs": "~1.4.6",
-    "bootstrap": "~3.2.0",
-    "font-awesome": "~4.2.0",
-    "ui-router": "~0.2.11",
-    "angular-jwt": "~0.0.4",
-    "a0-angular-storage": "~0.0.6",
-    "typekit-load": "~0.1.2",
-    "angular-ui-router": "~0.2.11",
-    "lodash": "~3.10.1",
-    "ui-router-extras": "~0.0.14",
-    "angular-animate": "~1.4.7",
-    "angular-drag-and-drop-lists": "~1.3.0"
-  },
+  "version": "0.0.1",
+  "homepage": "https://wendydonahoeart.com",
+  "authors": [
+    "William Donahoe <wdonahoe@udel.edu>"
+  ],
+  "description": "A website for artist Wendy Donahoe.",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "vendor"
-  ]
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "a0-angular-storage": "~0.0.6",
+    "angular-animate": "~1.4.7",
+    "angular-drag-and-drop-lists": "~1.3.0",
+    "angular-jwt": "~0.0.4",
+    "angular-touch": "~1.4.7",
+    "angular-resource": "~1.4.6",
+    "angular-ui-bootstrap": "~0.13.1",
+    "angularjs": "~1.4.6",
+    "async-load": "~0.1.0",
+    "bootstrap": "~3.2.0",
+    "dom-class": "~0.1.0",
+    "font-awesome": "~4.2.0",
+    "loading": "*",
+    "lodash": "~3.10.1",
+    "ng-file-upload": "~6.0.4",
+    "typekit-load": "~0.1.2",
+    "ui-router": "~0.2.11"
+  }
 }
