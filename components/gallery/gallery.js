@@ -60,9 +60,10 @@ angular.module("wdonahoeart.gallery", [
 			if (drawing.index > drawings.length){
 				drawing.index = 0;
 			}
-			$scope.currentDrawing = drawings[drawing.index];
-			$scope.index = drawing.index;
-			$scope.$apply();
+			$scope.$apply(function(){
+				$scope.currentDrawing = drawings[drawing.index];
+				$scope.index = drawing.index;
+			});
 		}
 	});
 
@@ -102,6 +103,7 @@ angular.module("wdonahoeart.gallery", [
 				var tall =  Number($scope.drawing.height) > Number($scope.drawing.width);
 				return {tall: tall, wide: !tall};
 			}
+
 		},
 		link: function(scope, element, attrs){
 			var startX;
@@ -113,11 +115,10 @@ angular.module("wdonahoeart.gallery", [
 			scope.$watch(function(){
 				return w.width();
 			}, function(newWidth, oldWidth){
-				if (newWidth <= 991 && oldWidth > 991 || (newWidth - oldWidth) === 0){
+				if (newWidth <= 991){
 					$swipe.bind(element, {
 						'start': function(coords){
 							startX = coords.x;
-							console.log(startX);
 						},
 						'move': function(coords){
 							deltaX = coords.x - startX;
@@ -140,7 +141,7 @@ angular.module("wdonahoeart.gallery", [
 							return;
 						}
 					});
-				} else if (newWidth >= 991 && oldWidth < 991){
+				} else {
 					element.unbind('mousedown mousemove mouseup touchstart touchmove touchend touchcancel');				
 				}
 			}, true);

@@ -6,8 +6,7 @@ var app = angular.module('wdonahoeart', [
 	'wdonahoeart.jwtAuth',
 	'wdonahoeart.admin',
 	'wdonahoeart.gallery',
-	'wdonahoeart.text',
-	'ngAnimate'
+	'wdonahoeart.text'
 ]);
 
 app.constant('API_URL','http://localhost:8080/api')
