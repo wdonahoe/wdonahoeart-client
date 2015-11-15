@@ -6,10 +6,11 @@ var app = angular.module('wdonahoeart', [
 	'wdonahoeart.jwtAuth',
 	'wdonahoeart.admin',
 	'wdonahoeart.gallery',
-	'wdonahoeart.text'
+	'wdonahoeart.text',
+	'wdonahoeart.landing'
 ]);
 
-app.constant('API_URL','/api')
+app.constant('API_URL','http://localhost:8080/api')
 .config(function($urlRouterProvider, $httpProvider){
 	
 	/* note, you NEED this line for ui-router to work! */
@@ -61,7 +62,7 @@ app.constant('API_URL','/api')
 	};
 
 }])
-.controller('AppCtrl', ['$scope', '$state', 'jwtAuthFactory', function($scope, $state, jwtAuthFactory){
+.controller('AppCtrl', ['$scope', '$state', 'jwtAuthFactory', '$location', '$rootScope', function($scope, $state, jwtAuthFactory, $location, $rootScope){
 
 	this.isAuthed = function(){
 		return jwtAuthFactory.isAuthed();
@@ -71,5 +72,23 @@ app.constant('API_URL','/api')
 		jwtAuthFactory.destroyAuth();
 		$state.go('home');
 	}
+	if ($location.url() == '' || $location.url() == '/'){
+		$state.go('landing');
+		$scope.landing = true;
+	}
+
+	$rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState){
+		if (fromState.name === 'landing'){
+			$scope.transitioning = true;
+		}
+		else {
+			$scope.transitioning = false;
+		}
+		if (toState.name === 'landing'){
+			$scope.landing = true;
+		} else {
+			$scope.landing = false;
+		}
+	});
 
 }]);

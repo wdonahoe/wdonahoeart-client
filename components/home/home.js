@@ -3,7 +3,7 @@ angular.module('wdonahoeart.home', [
 ])
 .config(function($stateProvider){
 	$stateProvider.state('home', {
-		url: '/',
+		url: '/home',
 		templateUrl: 'components/home/home.html',
 		controller: 'HomeCtrl'
 	});

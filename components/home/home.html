@@ -1,7 +1,16 @@
-<div ng-controller="HomeCtrl as home">
-	<button ng-click="callProtected()" ng-show="app.isAuthed()">protected</button>
-	<button ng-click="callUnprotected()">unprotected</button>
-	<ul ng-repeat="message in messages track by $index"> 
-		<li>{{ message }}</li>
-	</ul>
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-5 slide-up">
+		<h2>Artist Statement</h2>
+	</div>
+</div>
+<div class="row">
+<div class="bio-flex-container">
+<div class="col-sm-5 disappear slide-up">
+	<img ng-src="https://s3.amazonaws.com/wdonahoeart/Bridal-Satin.jpg" class="wide">
+</div>
+<div class="col-sm-7 slide-up">
+<p class="bigger">As a Realist Artist my intention is not to create art that merely records an image that will only elicit a singular response. The phrase, “a picture tells a thousand stories”, is how I approach art and create art, and that the conceptual elements will engage the viewer to lead them to their own personal response. What a tragedy that the artist would disclose their intent and in doing so erases the mystery. Allow the viewer to have their moment alone... find their own words.</p>
+<p class="bigger indent">Art is wordless but to ourselves.</p>
+</div>
+</div>
 </div>

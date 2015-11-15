@@ -6787,14 +6787,22 @@ button.close {
   animation-timing-function: ease;
   animation-fill-mode: forwards;
 }
+.bigger {
+  font-size: 1.3em;
+}
 a,
 a:active,
-a:focus {
-  outline: none;
+a:focus,
+a:hover {
+  text-decoration: none;
+  color: inherit;
 }
 html,
 body {
   height: 100%;
+}
+p {
+  color: #282828;
 }
 @media only screen and (min-device-width: 992px) {
   #radio-buttons {
@@ -6831,7 +6839,8 @@ body {
   padding-bottom: 5px;
   cursor: pointer;
 }
-.edit-list .dndDraggingSource {
+.edit-list .dndDraggingSource,
+.hidden {
   display: none;
 }
 .edit-list .dndPlaceholder {
@@ -6871,12 +6880,15 @@ body {
 .tall {
   width: 53%;
   height: auto;
-  z-index: 4;
+  z-index: 2;
 }
 .wide {
   width: 85%;
   max-height: 1000px;
-  z-index: 4;
+  z-index: 2;
+}
+.black {
+  background-color: black;
 }
 .left {
   border: 5px solid blue;
@@ -6899,6 +6911,13 @@ body {
   flex-flow: row wrap;
   justify-content: center;
 }
+.welcome-flex-container {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  flex-flow: row wrap;
+  height: 700px;
+}
 .preview-flex-container {
   display: flex;
   display: -webkit-flex;
@@ -6918,12 +6937,71 @@ body {
   width: 85%;
   max-height: 1000px;
 }
-@media only screen and (max-width: 992px) {
+#welcome-name {
+  color: white;
+  font-size: 1.9em;
+  flex: 1 50%;
+}
+#welcome-img {
+  flex: 2 50%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: left;
+}
+#welcome-img div {
+  height: 700px;
+  width: 550px;
+}
+#welcome-img img {
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+}
+@media only screen and (max-width: 1199px) {
   .scroll-pane,
   disappear,
   .bio-flex-container img {
     display: none;
   }
+  #welcome-img {
+    flex: 2 100%;
+    justify-content: center;
+  }
+  #welcome-name {
+    flex: 1 100%;
+    text-align: center;
+  }
+  .welcome-flex-container {
+    height: 450px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .welcome-flex-container {
+    height: 300px;
+  }
+}
+@media only screen and (max-width: 551px) {
+  #welcome-img div {
+    height: 500px;
+    width: 393px;
+  }
+  #welcome-name {
+    font-size: 1.4em;
+  }
+}
+@media only screen and (max-width: 394px) {
+  #welcome-img div {
+    height: 352px;
+    width: 277px;
+  }
+  #welcome-name {
+    font-size: 1.2em;
+  }
+}
+.bodyTransition {
+  animation-name: fadeFromBlack;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
 }
 .fadez {
   animation-name: fadeOutForm;
@@ -6934,6 +7012,11 @@ body {
 .fadeIn {
   animation-name: fadeInImage;
   animation-duration: 0.45s;
+  animation-fill-mode: forwards;
+}
+.fadeInSlow {
+  animation-name: fadeInImage;
+  animation-duration: 0.75s;
   animation-fill-mode: forwards;
 }
 .spinner {
@@ -7105,5 +7188,45 @@ body {
   }
   100% {
     opacity: 0.2;
+  }
+}
+@-webkit-keyframes fadeFromBlack {
+  0% {
+    background-color: black;
+  }
+  100% {
+    background-color: white;
+  }
+}
+@-moz-keyframes fadeFromBlack {
+  0% {
+    background-color: black;
+  }
+  100% {
+    background-color: white;
+  }
+}
+@-ms-keyframes fadeFromBlack {
+  0% {
+    background-color: black;
+  }
+  100% {
+    background-color: white;
+  }
+}
+@-o-keyframes fadeFromBlack {
+  0% {
+    background-color: black;
+  }
+  100% {
+    background-color: white;
+  }
+}
+@keyframes fadeFromBlack {
+  0% {
+    background-color: black;
+  }
+  100% {
+    background-color: white;
   }
 }
