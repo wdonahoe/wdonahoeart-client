@@ -43,7 +43,7 @@ a, a:active, a:focus, a:hover{
 	color:inherit;
 }
 html, body {
-	height: 100%;
+	//height: 100%;
 }
 
 p {
@@ -142,7 +142,6 @@ and (min-device-width: 992px) {
 
 .tall {
 	width: 53%;
-	height: auto;
 	z-index: 2;
 }
 
@@ -156,13 +155,6 @@ and (min-device-width: 992px) {
 	background-color: black;
 }
 
-.left {
-	border: 5px solid blue;
-}
-
-.right {
-	border: 5px solid red;
-}
 
 .img-info {
 	margin-top: 20px;
@@ -188,7 +180,7 @@ and (min-device-width: 992px) {
 	display: -webkit-flex;
 	align-items: center;
 	flex-flow: row wrap;
-	height: 700px;
+	height: 100%;
 
 }
 
@@ -226,40 +218,37 @@ and (min-device-width: 992px) {
 	flex: 2 50%;
 	display: flex;
 	display: -webkit-flex;
-	justify-content: left;
+	justify-content: center;
 }
 
 #welcome-img div {
 	height:700px;
 	width:550px;
+	background-color: black;
 }
 
 #welcome-img img {
 	height: 100%;
 	width: 100%;
-	z-index:3;
 }
 
-@media only screen and (max-width: 1199px){
-	.scroll-pane, disappear, .bio-flex-container img {
+@media only screen and (max-width: 1200px){
+	.scroll-pane, disappear, .bio-flex-container img{
 		display: none;
 	}
+	.tall, .wide {
+		width: 90%;
+		height: auto;
+	}
+}
+
+@media only screen and (max-width: 1309px){
 	#welcome-img {
 		flex: 2 100%;
-		justify-content: center;
 	}
 	#welcome-name{
 		flex: 1 100%;
 		text-align: center;
-	}
-	.welcome-flex-container{
-		height: 450px;
-	}
-}
-
-@media only screen and (max-width: 400px){
-	.welcome-flex-container{
-		height: 300px;
 	}
 }
 
@@ -304,7 +293,7 @@ and (min-device-width: 992px) {
 
 .fadeInSlow {
 	animation-name: fadeInImage;
-	animation-duration: 0.75s;
+	animation-duration: 1s;
 	animation-fill-mode: forwards;
 }
 
@@ -345,10 +334,5 @@ and (min-device-width: 992px) {
 @-o-keyframes fadeOutForm {.opacity(1.0, 0.2);}
 @keyframes fadeOutForm {.opacity(1.0, 0.2);}
 
-@-webkit-keyframes fadeFromBlack {0% {background-color:black;} 100% {background-color: white;}}
-@-moz-keyframes fadeFromBlack {0% {background-color:black;} 100% {background-color: white;}}
-@-ms-keyframes fadeFromBlack {0% {background-color:black;} 100% {background-color: white;}}
-@-o-keyframes fadeFromBlack {0% {background-color:black;} 100% {background-color: white;}}
-@keyframes fadeFromBlack {0% {background-color:black;} 100% {background-color: white;}}
 
 

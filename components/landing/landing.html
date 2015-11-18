@@ -1,8 +1,8 @@
 <div class="row welcome-flex-container">
 <div id="welcome-name">
-	<p style="color:white;"><a ui-sref="home">Wendy Donahoe | Realist Drawings</a></p>
+	<p style="color:white;" class="thin"><a ui-sref="home">Wendy Donahoe | Realist Drawings</a></p>
 </div>
-<a ui-sref="home"><div id="welcome-img">
-	<div><img ng-show="slide.loaded" class="fadeInSlow" ng-repeat="slide in ctrl.slides" ng-if="ctrl.isCurrentIndex($index)" ng-src="{{slide.src | trusted}}"></div>
-</div></a>
+<div id="welcome-img">
+	<div><a ui-sref="home"><img ng-show="slide.loaded" class="fadeInSlow" ng-repeat="slide in ctrl.slides" ng-if="ctrl.isCurrentIndex($index)" ng-src="{{slide.src | trusted}}"></div></a>
+</div>
 </div>
