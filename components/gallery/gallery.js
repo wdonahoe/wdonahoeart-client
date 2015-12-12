@@ -18,7 +18,10 @@ angular.module("wdonahoeart.gallery", [
 				},
 				'right@gallery': {
 					templateUrl: 'components/gallery/partials/gallery-img.html',
-					controller: 'GalleryImgController'
+					controllerProvider: function($stateParams){
+						console.log($stateParams);
+						return 'GalleryImgController';
+					}
 				}
 			},
 			resolve: {
@@ -73,6 +76,18 @@ angular.module("wdonahoeart.gallery", [
 		$scope.hoverDrawing = drawing;
 	});
 
+	// $scope.$on('smallScreen', function(event){
+	// 	event.stopPropagation();
+	// 	$scope.smallScreen = true;
+	// 	console.log($scope.smallScreen);
+	// });
+
+	// $scope.$on('largeScreen', function(event){
+	// 	event.stopPropagation();
+	// 	$scope.smallScreen = false;
+	// 	console.log($scope.smallScreen);
+	// });
+
 })
 .directive('hoverInfo', function(){
 	return {
@@ -86,7 +101,7 @@ angular.module("wdonahoeart.gallery", [
 				  '</div>'
 	};
 })
-.directive('galleryImg', function($timeout, $swipe, $window){
+.directive('galleryImg', function($timeout, $window){
 	return {
 		restrict: 'E',
 		replace: true,
@@ -106,50 +121,6 @@ angular.module("wdonahoeart.gallery", [
 
 		},
 		link: function(scope, element, attrs){
-			var startX;
-			var deltaX;
-			var w = angular.element($window);
-			var opacity;
-			var abs;
-
-			scope.$watch(function(){
-				return w.width();
-			}, function(newWidth, oldWidth){
-				if (newWidth <= 991){
-					$swipe.bind(element, {
-						'start': function(coords){
-							startX = coords.x;
-						},
-						'move': function(coords){
-							deltaX = coords.x - startX;
-							console.log(deltaX);
-							element.css({
-								'transform': 'translateX('+deltaX+'px)',
-								'opacity': -0.005 * Math.abs(deltaX) + 1
-							});
-						},
-						'end': function(coords){
-							if (deltaX < 0 && Math.abs(deltaX) >= 100){
-								scope.$emit('galleryImageSwitch', {drawing: undefined, index: scope.index + 1});
-							} else if (deltaX > 100){
-								scope.$emit('galleryImageSwitch', {drawing: undefined, index: scope.index > 0 ? scope.index - 1 : 0});
-							}
-							element.css({
-								'transform': 'translateX(0px)',
-								'opacity': 1
-							});
-							return;
-						}
-					});
-				} else {
-					element.unbind('mousedown mousemove mouseup touchstart touchmove touchend touchcancel');				
-				}
-			}, true);
-
-			w.bind('resize', function(){
-				scope.$apply();
-			})
-
 			scope.$watch('drawing', function(newVal, oldVal){
 				if (newVal === oldVal) 
 					return;
@@ -159,7 +130,7 @@ angular.module("wdonahoeart.gallery", [
 		}
 	}
 })
-.directive('scrollPane',function($timeout){
+.directive('scrollPane',function($timeout, $window){
 	return {
 		restrict: 'EA',
 		transclude: true,
@@ -182,9 +153,42 @@ angular.module("wdonahoeart.gallery", [
 
 		},
 		link: function(scope, element, attrs){
+			var w = angular.element($window);
+			var switchFormat = false;
+			var singlePane = false;
+
+			scope.$watch(function(){
+				return w.width();
+			}, function(newWidth, oldWidth){
+				console.log(newWidth);
+				if (newWidth <= 1200 && oldWidth > 1200){
+					singlePane = true;
+					switchFormat = true;
+				} else if (newWidth > 1200 && oldWidth <= 1200){
+					singlePane = false;
+					switchFormat = true;
+				} else {
+					switchFormat = false;
+				}
+			});
+			w.bind('resize', function(){
+				scope.$apply(function(){
+					if (switchFormat && singlePane){
+						console.log(singlePane);
+						scope.pane.destroy();
+						element.removeClass("slide-up");
+					} else if (switchFormat && !singlePane){
+						element.jScrollPane({animateScroll:true, autoreinitialize:true});
+						scope.pane = element.data("jsp");
+					}
+				});
+			});
+
+
 			scope.$watch('loaded', function(val){
 				if (val){
 					element.jScrollPane({animateScroll:true, autoreinitialize:true});
+					scope.pane = element.data("jsp");
 				}
 			});
 		}
