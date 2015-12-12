@@ -10,7 +10,8 @@ var app = angular.module('wdonahoeart', [
 	'wdonahoeart.landing'
 ]);
 
-app.constant('API_URL','http://localhost:8080/api')
+//app.constant('API_URL','http://localhost:8080/api')
+app.constant('API_URL','http://107.170.44.229/api')
 .config(function($urlRouterProvider, $httpProvider){
 	
 	/* note, you NEED this line for ui-router to work! */
