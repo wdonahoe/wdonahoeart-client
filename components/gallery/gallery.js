@@ -18,7 +18,6 @@ angular.module("wdonahoeart.gallery", [
 				'right@gallery': {
 					templateUrl: 'components/gallery/partials/gallery-img.html',
 					controllerProvider: function($stateParams){
-						console.log($stateParams);
 						return 'GalleryImgController';
 					}
 				}
