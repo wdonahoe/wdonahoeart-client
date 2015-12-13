@@ -28,6 +28,7 @@ angular.module("wdonahoeart.gallery", [
 					var param = $stateParams.gallery === 'color' ? 'color' : 'bw';
 					return apiFactory.getImageUrls($stateParams.param)
 						.then(function(result){
+							console.log(result);
 							return _.get(result.data, param);
 					});
 				}
