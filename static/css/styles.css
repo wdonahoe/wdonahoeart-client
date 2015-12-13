@@ -6948,6 +6948,17 @@ p {
   height: 100%;
   width: 100%;
 }
+.contact-container {
+  margin: 10px;
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+}
+.contact-container img {
+  width: 250px;
+  height: 250px;
+}
 @media only screen and (max-width: 1200px) {
   .disappear,
   .bio-flex-container img {

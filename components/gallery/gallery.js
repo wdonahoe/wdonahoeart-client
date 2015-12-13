@@ -1,6 +1,5 @@
 angular.module("wdonahoeart.gallery", [
 	'ngResource',
-	'ngTouch',
 	'ui.router'
 ])
 .config(function($stateProvider){
@@ -160,7 +159,6 @@ angular.module("wdonahoeart.gallery", [
 			scope.$watch(function(){
 				return w.width();
 			}, function(newWidth, oldWidth){
-				console.log(newWidth);
 				if (newWidth <= 1200 && oldWidth > 1200){
 					singlePane = true;
 					switchFormat = true;
@@ -174,9 +172,7 @@ angular.module("wdonahoeart.gallery", [
 			w.bind('resize', function(){
 				scope.$apply(function(){
 					if (switchFormat && singlePane){
-						console.log(singlePane);
 						scope.pane.destroy();
-						element.removeClass("slide-up");
 					} else if (switchFormat && !singlePane){
 						element.jScrollPane({animateScroll:true, autoreinitialize:true});
 						scope.pane = element.data("jsp");
@@ -186,7 +182,7 @@ angular.module("wdonahoeart.gallery", [
 
 
 			scope.$watch('loaded', function(val){
-				if (val){
+				if (val && w.width() > 1200){
 					element.jScrollPane({animateScroll:true, autoreinitialize:true});
 					scope.pane = element.data("jsp");
 				}

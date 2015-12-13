@@ -7,7 +7,8 @@ var app = angular.module('wdonahoeart', [
 	'wdonahoeart.admin',
 	'wdonahoeart.gallery',
 	'wdonahoeart.text',
-	'wdonahoeart.landing'
+	'wdonahoeart.landing',
+	'wdonahoeart.contact'
 ]);
 
 //app.constant('API_URL','http://localhost:8080/api')
