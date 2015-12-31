@@ -48,8 +48,7 @@ angular.module("wdonahoeart.gallery", [
 
 })
 .controller('GalleryImgController', function($scope, drawings){
-	$scope.index = 0;
-	$scope.currentDrawing = drawings[$scope.index];
+	$scope.currentDrawing = drawings[0];
 
 	$scope.$on('galleryImageSwitch', function(event, drawing){
 		$scope.currentDrawing = drawing;
