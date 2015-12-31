@@ -17,9 +17,7 @@ angular.module("wdonahoeart.gallery", [
 				},
 				'right@gallery': {
 					templateUrl: 'components/gallery/partials/gallery-img.html',
-					controllerProvider: function($stateParams){
-						return 'GalleryImgController';
-					}
+					controller: 'GalleryImgController'
 				}
 			},
 			resolve: {
@@ -54,19 +52,7 @@ angular.module("wdonahoeart.gallery", [
 	$scope.currentDrawing = drawings[$scope.index];
 
 	$scope.$on('galleryImageSwitch', function(event, drawing){
-		if (drawing.index === undefined){
-			$scope.currentDrawing = drawing;
-			$scope.index = _.findIndex(drawings, {'_id': drawing._id });
-		}
-		else {
-			if (drawing.index > drawings.length){
-				drawing.index = 0;
-			}
-			$scope.$apply(function(){
-				$scope.currentDrawing = drawings[drawing.index];
-				$scope.index = drawing.index;
-			});
-		}
+		$scope.currentDrawing = drawing;
 	});
 
 	$scope.$on('sliderHover', function(event, drawing){
@@ -74,18 +60,6 @@ angular.module("wdonahoeart.gallery", [
 			return;
 		$scope.hoverDrawing = drawing;
 	});
-
-	// $scope.$on('smallScreen', function(event){
-	// 	event.stopPropagation();
-	// 	$scope.smallScreen = true;
-	// 	console.log($scope.smallScreen);
-	// });
-
-	// $scope.$on('largeScreen', function(event){
-	// 	event.stopPropagation();
-	// 	$scope.smallScreen = false;
-	// 	console.log($scope.smallScreen);
-	// });
 
 })
 .directive('hoverInfo', function(){
@@ -112,7 +86,6 @@ angular.module("wdonahoeart.gallery", [
 		},
 		template: '<img ng-src="{{drawing.url | filter}}" alt="{{drawing.title}}" ng-class="tallOrWide()">',
 		controller: function($scope){
-			
 			$scope.tallOrWide = function(){
 				var tall =  Number($scope.drawing.height) > Number($scope.drawing.width);
 				return {tall: tall, wide: !tall};
@@ -179,7 +152,6 @@ angular.module("wdonahoeart.gallery", [
 					}
 				});
 			});
-
 
 			scope.$watch('loaded', function(val){
 				if (val && w.width() > 1200){

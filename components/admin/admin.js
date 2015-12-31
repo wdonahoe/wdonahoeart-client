@@ -82,8 +82,7 @@ admin.config(function($stateProvider){
 					apiFactory.editDrawing($scope.file, self.drawing)
 						.then(function(result){		
 							$timeout(function(){
-								self.myForm.$setPristine();
-								
+								self.myForm.$setPristine();			
 
 								var toGo = result.data.isBw ? "shades-of-gray" : "color";
 								$state.go('gallery.views', {gallery: toGo});
