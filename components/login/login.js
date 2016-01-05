@@ -10,7 +10,7 @@ login.config(function($stateProvider){
 		controller: 'LoginCtrl'
 	});
 })
-.controller('LoginCtrl', ['$scope','$http','$state','apiFactory', function($scope, $http, $state, apiFactory){
+.controller('LoginCtrl', function($scope, $http, $state, apiFactory){
 	$scope.user = {};
 
 	$scope.login = function($http){
@@ -22,4 +22,4 @@ login.config(function($stateProvider){
 				  	alert(err.data);
 				});
 	};
-}]);
+});

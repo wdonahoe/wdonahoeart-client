@@ -6839,6 +6839,9 @@ p {
 .hidden {
   display: none;
 }
+.hide-scroll {
+  visibility: hidden;
+}
 .edit-list .dndPlaceholder {
   display: block;
   background-color: #ddd;
@@ -7014,17 +7017,13 @@ p {
     margin-left: 0px;
   }
 }
-@media only screen and (max-width: 394px) {
+@media only screen and (max-width: 375px) {
   #welcome-img div {
-    height: 352px;
-    width: 277px;
+    height: 335px;
+    width: 263px;
   }
   #welcome-name {
     font-size: 1.2em;
-  }
-  .scroll-pane img {
-    width: 277px;
-    height: 100%;
   }
 }
 .bodyTransition {

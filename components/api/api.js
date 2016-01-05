@@ -13,25 +13,6 @@ angular.module('wdonahoeart.api', [
 		});
 	};
 
-	/* more functions */
-
-	apiFactory.callUnprotected = function(){
-
-		return $http({
-			method: 'GET',
-			url: API_URL + '/test'
-		});
-	};
-
-	apiFactory.callProtected = function(){
-
-		return $http({
-			method: 'GET',
-			url: API_URL + '/test/protect'
-		});
-
-	};
-
 	apiFactory.uploadS3 = function(file, fileData){
 		return $http.post(API_URL + '/upload_s3',
 			{
@@ -63,7 +44,6 @@ angular.module('wdonahoeart.api', [
 			{
 				transformRequest: function(data){
 					var formData = new FormData();
-
 					formData.append("drawing", JSON.stringify(data.drawing));
 					formData.append("file", data.file);
 
@@ -76,7 +56,6 @@ angular.module('wdonahoeart.api', [
 		);
 	};
 
-
 	apiFactory.reorderDrawings = function(drawings){
 
 		return $http({
@@ -88,23 +67,20 @@ angular.module('wdonahoeart.api', [
 
 	apiFactory.getImageUrls = function(gallery){
 		if (gallery === undefined)
-			var gallery = 'all'
+			var gallery = 'all';
 
 		return $http({
 			method: 'GET',
 			url: API_URL + '/drawings/' + gallery,
-			cache: true
+			cached: true
 		});
 	};
 
 	apiFactory.getDrawing = function(id){
-
 		return $http({
 			method: 'GET',
-			url: API_URL + '/drawing/' + id,
-			cache: true
+			url: API_URL + '/drawing/' + id
 		});
-
 	}
 
 	return apiFactory;

@@ -24,17 +24,13 @@ angular.module("wdonahoeart.gallery", [
 				apiFactory: 'apiFactory',
 				drawings: function(apiFactory, $stateParams){
 					var param = $stateParams.gallery === 'color' ? 'color' : 'bw';
-					return apiFactory.getImageUrls($stateParams.param)
-						.then(function(result){
-							console.log(result);
-							return _.get(result.data, param);
-					});
+					return apiFactory.getImageUrls(param);
 				}
 			}
 		});
 })
 .controller('SliderController', function($scope, drawings){
-	$scope.drawings = drawings;
+	$scope.drawings = drawings.data.gallery;
 	$scope.loadedDrawings = [];
 	$scope.loaded = false;
 
@@ -48,7 +44,7 @@ angular.module("wdonahoeart.gallery", [
 
 })
 .controller('GalleryImgController', function($scope, drawings){
-	$scope.currentDrawing = drawings[0];
+	$scope.currentDrawing = drawings.data.gallery[0];
 
 	$scope.$on('galleryImageSwitch', function(event, drawing){
 		$scope.currentDrawing = drawing;
@@ -106,7 +102,7 @@ angular.module("wdonahoeart.gallery", [
 		restrict: 'EA',
 		transclude: true,
 		replace: true,
-		template: '<div class="scroll-pane"><div ng-transclude></div></div>',
+		template: '<div class="scroll-pane slide-up"><div ng-transclude></div></div>',
 		scope: {
 			length: '@'
 		},
@@ -156,6 +152,7 @@ angular.module("wdonahoeart.gallery", [
 				if (val && w.width() > 1200){
 					element.jScrollPane({animateScroll:true, autoreinitialize:true});
 					scope.pane = element.data("jsp");
+					$timeout(function(){element.removeClass("hide-scroll")},100);
 				}
 			});
 		}

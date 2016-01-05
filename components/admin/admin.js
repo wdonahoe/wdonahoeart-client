@@ -38,7 +38,8 @@ admin.config(function($stateProvider){
 					if (_.every(self.drawings, self.orig)){
 						return false;
 					} else { 
-						apiFactory.reorderDrawings(self.drawings).then(function(){
+						apiFactory.reorderDrawings(self.drawings).then(function(res){
+							console.log(res);
 							if (!_.every(self.drawings.bw, self.orig.bw))
 								$state.go('gallery.views', {gallery: 'shades-of-gray'});
 							else
