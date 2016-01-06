@@ -13,20 +13,20 @@ var app = angular.module('wdonahoeart', [
 
 app.constant('API_URL','http://localhost:8080/api')
 // app.constant('API_URL','http://107.170.44.229/api')
-.config(function($urlRouterProvider, $httpProvider){
+.config(['$urlRouterProvider', '$httpProvider', function($urlRouterProvider, $httpProvider){
 	
 	/* note, you NEED this line for ui-router to work! */
 	$urlRouterProvider.otherwise('/');
 	
 	$httpProvider.interceptors.push('jwtAuthInterceptor');
 
-})
-.filter('trusted', function($sce){
+}])
+.filter('trusted', ['$sce', function($sce){
 	return function(url){
 		return $sce.trustAsResourceUrl(url);
 	};
-})
-.run(function($rootScope, jwtAuthFactory){
+}])
+.run(['$rootScope', 'jwtAuthFactory', function($rootScope, jwtAuthFactory){
 
 	$rootScope.$on('$stateChangeStart', function(e, to){
 		if (to.data && to.data.requiresLogin){
@@ -37,7 +37,7 @@ app.constant('API_URL','http://localhost:8080/api')
 		}
 	});
 
-})
+}])
 .factory('jwtAuthInterceptor', ['$q', '$injector', 'jwtAuthFactory', 'API_URL', function($q, $injector, jwtAuthFactory, API_URL){
 	
 	return {

@@ -10,12 +10,10 @@
 		<link href="static/css/styles.css" rel="stylesheet">
 		<link href="static/css/jquery.jscrollpane.css" rel="stylesheet">
 
-		<!-- jScrollPane -->
 		<script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
-		<script src="static/js/jquery.jscrollpane.js" type="text/javascript"></script>
-		<script src="static/js/jquery.mousewheel.js" type="text/javascript"></script>
+		<script src="static/js/jquery.jscrollpane.min.js" type="text/javascript"></script>
+		<script src="static/js/jquery.mousewheel.min.js" type="text/javascript"></script>
 
-		<!-- Bootstrap javascript -->
 		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 
 		<title>Artwork By Wendy Donahoe</title>
@@ -35,21 +33,11 @@
 					<ul class="nav navbar-nav">
 						<li><a data-target=".navbar-collapse.in.in" data-toggle="collapse" ui-sref="home">Home</a></li>
 						<li role="separator" class="divider"></li>
-
-						<!-- dropdown menu "About" -->
-						<!-- <li class="dropdown"> -->
-							<!-- <a class="dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false">About</a> -->
-							<!-- <ul class="dropdown-menu"> -->
-								<li><a data-target=".navbar-collapse.in" data-toggle="collapse" ui-sref="bio">Bio</a></li>
-								<li><a data-target=".navbar-collapse.in" data-toggle="collapse" ui-sref="cv">CV</a></li>
-							<!-- </ul> -->
-						<!-- </li> -->
-
+							<li><a data-target=".navbar-collapse.in" data-toggle="collapse" ui-sref="bio">Bio</a></li>
+							<li><a data-target=".navbar-collapse.in" data-toggle="collapse" ui-sref="cv">CV</a></li>
 						<li><a data-target=".navbar-collapse.in" data-toggle="collapse" ui-sref="gallery.views({gallery: 'shades-of-gray'})">Shades of Gray</a></li>
 						<li><a data-target=".navbar-collapse.in" data-toggle="collapse" ui-sref="gallery.views({gallery: 'color'})">Color</a></li>
 						<li><a data-target=".navbar-collapse.in" data-toggle="collapse" ui-sref="contact">Contact</a></li>
-
-
 					</ul>
 					<ul class="nav navbar-nav navbar-right" ng-show="app.isAuthed()">
 						<li><a data-target=".navbar-collapse.in" data-toggle="collapse" ui-sref="admin.upload">Admin Panel</a></li>
@@ -61,43 +49,14 @@
 		<div ui-view class="container" style="padding-top: 85px;"></div>
 		<hr ng-show="!landing">
 
-		<!-- AngularJS -->
-		<script src="bower_components/angularjs/angular.js" type="text/javascript"></script>
-		<!-- AngularUI Router -->
+		<script src="bower_components/angularjs/angular.min.js" type="text/javascript"></script>
 		<script src="bower_components/ui-router/release/angular-ui-router.min.js" type="text/javascript"></script>
-
 		<script src="bower_components/angular-resource/angular-resource.min.js" type="text/javascript"></script>
-
 		<script src="bower_components/angular-animate/angular-animate.min.js" type="text/javascript"></script>
-
 		<script src="bower_components/angular-touch/angular-touch.min.js" type="text/javascript"></script>
-
-		<!-- Lodash -->
 		<script src="bower_components/lodash/lodash.min.js" type="text/javascript"></script>
-
 		<script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js" type="text/javascript"></script>
 
-		<!-- My Modules -->
-		<script src="app.js" type="text/javascript"></script>
-		<script src="components/home/home.js" type="text/javascript"></script>
-		<script src="components/login/login.js" type="text/javascript"></script>
-		<script src="components/api/api.js" type="text/javascript"></script>
-		<script src="components/jwt-auth/jwtAuth.js" type="text/javascript"></script>
-		<script src="components/admin/admin.js" type="text/javascript"></script>
-		<script src="components/file-reader/fileReader.js" type="text/javascript"></script>
-		<script src="components/gallery/gallery.js" type="text/javascript"></script>
-		<script src="components/text/text.js" type="text/javascript"></script>
-		<script src="components/landing/landing.js" type="text/javascript"></script>
-		<script src="components/contact/contact.js" type="text/javascript"></script>
-
-		<!-- Controllers -->
-		<script src="components/admin/controllers/upload.js" type="text/javascript"></script>
-
-		<!-- Shared -->
-		<script src="shared/directives/fileInput.js" type="text/javascript"></script>
-		<script src="shared/directives/myLoginForm.js" type="text/javascript"></script>
-		<script src="shared/directives/fade-in.js" type="text/javascript"></script>
-		<script src="shared/directives/fade-out.js" type="text/javascript"></script>
-		<script src="shared/directives/spinner.js" type="text/javascript"></script>
+		<script src="dist/app.min.js" type="text/javascript"></script>
 	</body>
 </html>

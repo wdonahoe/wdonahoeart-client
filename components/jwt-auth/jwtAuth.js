@@ -1,7 +1,6 @@
 angular.module('wdonahoeart.jwtAuth', [
-
 ])
-.factory('jwtAuthFactory', function($window){
+.factory('jwtAuthFactory', ['$window', function($window){
 	var jwtAuthFactory = {};
 
 	jwtAuthFactory.parseJwt = function(token){
@@ -41,4 +40,4 @@ angular.module('wdonahoeart.jwtAuth', [
 	}
 
 	return jwtAuthFactory;
-})
+}]);

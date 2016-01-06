@@ -1,4 +1,4 @@
-admin.controller('UploadCtrl', ['apiFactory','fileReaderFactory','$scope', '$timeout', '$state', function(apiFactory, fileReader, $scope, $timeout, $state){
+admin.controller('UploadCtrl', ['apiFactory','fileReaderFactory','$scope', '$timeout', '$state', function(apiFactory, fileReaderFactory, $scope, $timeout, $state){
 	var self = this;
 
 	var data_keys = ['title','medium','width','height','isBw'];
@@ -12,7 +12,7 @@ admin.controller('UploadCtrl', ['apiFactory','fileReaderFactory','$scope', '$tim
 	}
 
 	self.getFile = function(){
-		fileReader.readAsDataURL($scope.file, $scope)
+		fileReaderFactory.readAsDataURL($scope.file, $scope)
 			.then(function(result){
 				self.imgSrc = result;
 			});

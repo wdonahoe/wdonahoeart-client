@@ -162,6 +162,10 @@ and (min-device-width: 992px) {
 .img-info {
 	margin-top: 20px;
 	padding-bottom: 20px;
+	-webkit-box-flex: 2 100%;
+	-moz-box-flex: 2 100%;
+	-webkit-flex: 2 100%;
+	-ms-flex: 2 100%;
 	flex: 2 100%;
 	text-align: center;
 }
@@ -171,16 +175,22 @@ and (min-device-width: 992px) {
 	margin: 0;
 	width:100%;
 
-	display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
 	display: -webkit-flex;
+	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
 }
 
 .welcome-flex-container {
 
-	display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
 	display: -webkit-flex;
+	display: flex;
 	align-items: center;
 	flex-flow: row wrap;
 	height: 100%;
@@ -188,8 +198,11 @@ and (min-device-width: 992px) {
 }
 
 .preview-flex-container {
-	display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
 	display: -webkit-flex;
+	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
 }
@@ -199,8 +212,11 @@ and (min-device-width: 992px) {
 	margin: 0;
 	width:100%;
 
-	display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
 	display: -webkit-flex;
+	display: flex;
 	flex-flow: row wrap;
 	justify-content: right;
 }
@@ -213,11 +229,22 @@ and (min-device-width: 992px) {
 #welcome-name {
 	color:white;
 	font-size: 1.9em;
+	-webkit-box-flex: 1 50%;
+	-moz-box-flex: 1 50%;
+	-webkit-flex: 1 50%;
+	-ms-flex: 1 50%;
 	flex: 1 50%;
 }
 
 #welcome-img {
-	flex: 2 50%;
+	-webkit-box-flex: 1 50%;
+	-moz-box-flex: 1 50%;
+	-webkit-flex: 1 50%;
+	-ms-flex: 1 50%;
+	flex: 1 50%;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
 	justify-content: center;
@@ -237,8 +264,11 @@ and (min-device-width: 992px) {
 .contact-container {
 	margin:10px;
 	width: 100%;
-	display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
 	display: -webkit-flex;
+	display: flex;
 	justify-content: center;
 }
 
@@ -252,9 +282,18 @@ and (min-device-width: 992px) {
 		display: none;
 	}
 	.scroll-pane-container{
-		display: flex;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
 		display: -webkit-flex;
-		flex-flow: row wrap;
+		display: flex;
+		-webkit-box-orient: row;
+		-webkit-box-direction: row;
+		-ms-flex-direction: row;
+		-webkit-flex-direction: row;
+		-ms-flex-wrap:wrap;
+		-webkit-flex-wrap: wrap;
+		flex-wrap: wrap;
 		justify-content: center;
 	}
 	.tall, .wide {
@@ -280,9 +319,17 @@ and (min-device-width: 992px) {
 
 @media only screen and (max-width: 1309px){
 	#welcome-img {
+		-webkit-flex: 2 100%;
+		-moz-box-flex: 2 100%;
+		-webkit-flex: 2 100%;
+		-ms-flex: 2 100%;
 		flex: 2 100%;
 	}
 	#welcome-name{
+		-webkit-box-flex: 1 100%;
+		-moz-box-flex: 1 100%;
+		-webkit-flex: 1 100%;
+		-ms-flex: 1 100%;
 		flex: 1 100%;
 		text-align: center;
 	}

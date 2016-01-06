@@ -2,7 +2,7 @@ angular.module("wdonahoeart.text", [
 	'ngResource',
 	'ui.router'
 ])
-.config(function($stateProvider){
+.config(['$stateProvider', function($stateProvider){
 	$stateProvider
 		.state('bio',{
 			url: '/bio', 
@@ -12,4 +12,4 @@ angular.module("wdonahoeart.text", [
 			url: '/cv',
 			templateUrl: 'components/text/partials/cv.html'
 		});
-});
+}]);

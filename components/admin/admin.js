@@ -5,7 +5,17 @@ var admin = angular.module('wdonahoeart.admin',[
 	'wdonahoeart.fileReader'
 ]);
 
-admin.config(function($stateProvider){
+function getImageUrls2(apiFactory){
+	return apiFactory.getImageUrls();
+}
+getImageUrls2.$inject = ['apiFactory'];
+
+function getDrawing(apiFactory, $stateParams){
+	return apiFactory.getDrawing($stateParams.id);
+}
+getDrawing.$inject = ['apiFactory','$stateParams'];
+
+admin.config(['$stateProvider', function($stateProvider){
 	$stateProvider
 		.state('admin', {
 			abstract: true,
@@ -24,10 +34,7 @@ admin.config(function($stateProvider){
 			url: '/edit',
 			templateUrl: 'components/admin/partials/admin.edit.html',
 			resolve: {
-				apiFactory: 'apiFactory',
-				drawings: function(apiFactory){
-					return apiFactory.getImageUrls();
-				}
+				drawings: getImageUrls2
 			},
 			controller: ['drawings', 'apiFactory', '$state', function(drawings, apiFactory, $state){
 				this.drawings = drawings.data;
@@ -39,7 +46,6 @@ admin.config(function($stateProvider){
 						return false;
 					} else { 
 						apiFactory.reorderDrawings(self.drawings).then(function(res){
-							console.log(res);
 							if (!_.every(self.drawings.bw, self.orig.bw))
 								$state.go('gallery.views', {gallery: 'shades-of-gray'});
 							else
@@ -54,10 +60,7 @@ admin.config(function($stateProvider){
 			url: '/edit/{id}',
 			templateUrl: 'components/admin/partials/admin.edit-drawing.html',
 			resolve: {
-				apiFactory: 'apiFactory',
-				drawing: function(apiFactory, $stateParams){
-					return apiFactory.getDrawing($stateParams.id);
-				}
+				drawing: getDrawing
 			},
 			controller: ['drawing','$scope','apiFactory', 'fileReaderFactory', '$timeout', '$state', function(drawing, $scope, apiFactory, fileReader, $timeout, $state){
 				var self = this;
@@ -98,7 +101,7 @@ admin.config(function($stateProvider){
 			controllerAs: 'ctrl'
 		});
 
-})
+}])
 .directive('editList', function(){
 	return {
 		restrict: 'E',

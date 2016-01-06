@@ -1,8 +1,15 @@
-angular.module("wdonahoeart.gallery", [
+var gallery = angular.module("wdonahoeart.gallery", [
 	'ngResource',
 	'ui.router'
-])
-.config(function($stateProvider){
+]);
+
+function getImageUrls(apiFactory, $stateParams){
+	var param = $stateParams.gallery === 'color' ? 'color' : 'bw';
+	return apiFactory.getImageUrls(param);
+}
+getImageUrls.$inject = ['apiFactory','$stateParams'];
+
+gallery.config(['$stateProvider', function($stateProvider){
 	$stateProvider
 		.state('gallery',{
 			abstract: true, 
@@ -21,15 +28,11 @@ angular.module("wdonahoeart.gallery", [
 				}
 			},
 			resolve: {
-				apiFactory: 'apiFactory',
-				drawings: function(apiFactory, $stateParams){
-					var param = $stateParams.gallery === 'color' ? 'color' : 'bw';
-					return apiFactory.getImageUrls(param);
-				}
+				drawings: getImageUrls
 			}
 		});
-})
-.controller('SliderController', function($scope, drawings){
+}])
+.controller('SliderController', ['$scope', 'drawings', function($scope, drawings){
 	$scope.drawings = drawings.data.gallery;
 	$scope.loadedDrawings = [];
 	$scope.loaded = false;
@@ -42,8 +45,8 @@ angular.module("wdonahoeart.gallery", [
 		$scope.$parent.$broadcast('sliderHover', hoverDrawing);
 	};
 
-})
-.controller('GalleryImgController', function($scope, drawings){
+}])
+.controller('GalleryImgController', ['$scope', 'drawings', function($scope, drawings){
 	$scope.currentDrawing = drawings.data.gallery[0];
 
 	$scope.$on('galleryImageSwitch', function(event, drawing){
@@ -56,7 +59,7 @@ angular.module("wdonahoeart.gallery", [
 		$scope.hoverDrawing = drawing;
 	});
 
-})
+}])
 .directive('hoverInfo', function(){
 	return {
 		restrict: 'E',
@@ -69,7 +72,7 @@ angular.module("wdonahoeart.gallery", [
 				  '</div>'
 	};
 })
-.directive('galleryImg', function($timeout, $window){
+.directive('galleryImg', ['$timeout', '$window', function($timeout, $window){
 	return {
 		restrict: 'E',
 		replace: true,
@@ -80,13 +83,12 @@ angular.module("wdonahoeart.gallery", [
 			filter: "="
 		},
 		template: '<img ng-src="{{drawing.url | filter}}" alt="{{drawing.title}}" ng-class="tallOrWide()">',
-		controller: function($scope){
+		controller: ['$scope', function($scope){
 			$scope.tallOrWide = function(){
 				var tall =  Number($scope.drawing.height) > Number($scope.drawing.width);
 				return {tall: tall, wide: !tall};
 			}
-
-		},
+		}],
 		link: function(scope, element, attrs){
 			scope.$watch('drawing', function(newVal, oldVal){
 				if (newVal === oldVal) 
@@ -96,8 +98,8 @@ angular.module("wdonahoeart.gallery", [
 			});
 		}
 	}
-})
-.directive('scrollPane',function($timeout, $window){
+}])
+.directive('scrollPane', ['$timeout', '$window', function($timeout, $window){
 	return {
 		restrict: 'EA',
 		transclude: true,
@@ -106,7 +108,7 @@ angular.module("wdonahoeart.gallery", [
 		scope: {
 			length: '@'
 		},
-		controller: function($scope, $element, $attrs){
+		controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
 			$scope.loaded = false;
 			$scope.numLoaded = 0;
 
@@ -118,7 +120,7 @@ angular.module("wdonahoeart.gallery", [
 				}
 			}
 
-		},
+		}],
 		link: function(scope, element, attrs){
 			var w = angular.element($window);
 			var switchFormat = false;
@@ -157,7 +159,7 @@ angular.module("wdonahoeart.gallery", [
 			});
 		}
 	}
-})
+}])
 .directive('imageonload', function(){
 	return {
 		restrict: 'A',

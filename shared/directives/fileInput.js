@@ -1,4 +1,4 @@
-app.directive('fileInput', function($parse){
+app.directive('fileInput', ['$parse', function($parse){
 	return {
 		restrict: 'EA',
 		template: '<input type="file" />',
@@ -19,4 +19,4 @@ app.directive('fileInput', function($parse){
 			element.bind('change', updateModel);
 		}
 	};
-});
+}]);

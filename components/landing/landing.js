@@ -1,14 +1,14 @@
 angular.module('wdonahoeart.landing', [
 	'ui.router'
 ])
-.config(function($stateProvider){
+.config(['$stateProvider', function($stateProvider){
 	$stateProvider.state('landing', {
 		url: '/',
 		templateUrl: 'components/landing/landing.html',
 		controller: 'LandingCtrl as ctrl'
 	});
-})
-.controller('LandingCtrl', function($timeout){
+}])
+.controller('LandingCtrl', ['$timeout', function($timeout){
 	var self = this;
 	var interval = 5000;
 	var currentIndex = 0;
@@ -47,4 +47,4 @@ angular.module('wdonahoeart.landing', [
 	}
 
 	self.loadSlides();
-});
+}]);

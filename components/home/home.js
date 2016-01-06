@@ -1,13 +1,13 @@
 angular.module('wdonahoeart.home', [
 	'ui.router'
 ])
-.config(function($stateProvider){
+.config(['$stateProvider', function($stateProvider){
 	$stateProvider.state('home', {
 		url: '/home',
 		templateUrl: 'components/home/home.html',
 		controller: 'HomeCtrl'
 	});
-})
+}])
 .controller('HomeCtrl', ['$scope', 'apiFactory', function($scope, apiFactory){
 	$scope.messages = [];
 
