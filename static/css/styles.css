@@ -7033,6 +7033,8 @@ p {
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 0;
+    left: -6px;
   }
   .tall,
   .wide {
@@ -7040,7 +7042,7 @@ p {
     height: auto;
   }
   .scroll-pane {
-    width: 70%;
+    width: 95%;
     display: table;
     overflow: auto;
   }
@@ -7048,6 +7050,7 @@ p {
     opacity: 1;
     width: 100%;
     margin-bottom: 25px;
+    z-index: 3;
   }
   .jspHorizontalBar,
   .jspTrack,
