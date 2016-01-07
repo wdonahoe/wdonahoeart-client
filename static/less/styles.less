@@ -14,6 +14,26 @@
     display: none !important;
  }
 
+ html {
+ 	position: relative;
+ 	min-height: 100%;
+ }
+
+ body {
+ 	margin-bottom: 100px;
+ }
+
+ .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 100px;
+  border-top: 1px solid #f5f5f5;
+  color:#6E6E6E;
+  font-size: 0.9em;
+}
+
 .dropdown:hover .dropdown-menu {
     display: block;
 }
@@ -184,6 +204,10 @@ and (min-device-width: 992px) {
 	justify-content: center;
 }
 
+.gallery-flex-container img {
+	cursor: pointer;
+}
+
 .welcome-flex-container {
 
 	display: -webkit-box;
@@ -191,8 +215,8 @@ and (min-device-width: 992px) {
 	display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
+	-webkit-align-items: center;
 	align-items: center;
-	flex-flow: row wrap;
 	height: 100%;
 
 }
@@ -248,6 +272,8 @@ and (min-device-width: 992px) {
 	display: -webkit-flex;
 	display: flex;
 	justify-content: center;
+	flex-pack:center;
+	-webkit-box-pack: center;
 }
 
 #welcome-img div {
@@ -318,6 +344,9 @@ and (min-device-width: 992px) {
 }
 
 @media only screen and (max-width: 1309px){
+	.welcome-flex-container{
+		flex-flow: row wrap;
+	}
 	#welcome-img {
 		-webkit-flex: 2 100%;
 		-moz-box-flex: 2 100%;
@@ -393,7 +422,7 @@ and (min-device-width: 992px) {
 .upload-preview {
 	padding:20px 20px 0 20px;
 	width: 100%;
-	height: auto;
+	height:100%;
 }
 
 @-webkit-keyframes slideDown {from { top: -@navbar-height; } to { top: 0; }}

@@ -47,7 +47,12 @@
 			</div>
 		</nav>
 		<div ui-view class="container" style="padding-top: 85px;"></div>
-		<hr ng-show="!landing">
+		<div class="footer" ng-show="!landing">
+			<div class="container" style="padding:10px;">
+				Copyright &copy; {{copyright | date : 'yyyy' : '-500' }} Wendy Donahoe
+			</div>
+		</div>
+
 
 		<script src="bower_components/angularjs/angular.min.js" type="text/javascript"></script>
 		<script src="bower_components/ui-router/release/angular-ui-router.min.js" type="text/javascript"></script>

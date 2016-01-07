@@ -82,11 +82,15 @@ gallery.config(['$stateProvider', function($stateProvider){
 			index: "=",
 			filter: "="
 		},
-		template: '<img ng-src="{{drawing.url | filter}}" alt="{{drawing.title}}" ng-class="tallOrWide()">',
+		template: '<img ng-src="{{drawing.url | filter}}" alt="{{drawing.title}}" ng-class="tallOrWide()" ng-click="viewImage()">',
 		controller: ['$scope', function($scope){
 			$scope.tallOrWide = function(){
 				var tall =  Number($scope.drawing.height) > Number($scope.drawing.width);
 				return {tall: tall, wide: !tall};
+			}
+			$scope.viewImage = function(){
+				$window.open($scope.drawing.url, "_blank");
+				return false;
 			}
 		}],
 		link: function(scope, element, attrs){

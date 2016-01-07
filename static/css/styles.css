@@ -1071,7 +1071,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Avenir 55 Roman", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
@@ -6007,7 +6007,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Avenir 55 Roman", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6125,7 +6125,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Avenir 55 Roman", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6772,6 +6772,23 @@ button.close {
 .x-ng-cloak {
   display: none !important;
 }
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 100px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 100px;
+  border-top: 1px solid #f5f5f5;
+  color: #6E6E6E;
+  font-size: 0.9em;
+}
 .dropdown:hover .dropdown-menu {
   display: block;
 }
@@ -6912,14 +6929,17 @@ p {
   flex-flow: row wrap;
   justify-content: center;
 }
+.gallery-flex-container img {
+  cursor: pointer;
+}
 .welcome-flex-container {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  -webkit-align-items: center;
   align-items: center;
-  flex-flow: row wrap;
   height: 100%;
 }
 .preview-flex-container {
@@ -6968,6 +6988,8 @@ p {
   display: -webkit-flex;
   display: flex;
   justify-content: center;
+  flex-pack: center;
+  -webkit-box-pack: center;
 }
 #welcome-img div {
   height: 700px;
@@ -7036,6 +7058,9 @@ p {
   }
 }
 @media only screen and (max-width: 1309px) {
+  .welcome-flex-container {
+    flex-flow: row wrap;
+  }
   #welcome-img {
     -moz-box-flex: 2 100%;
     -webkit-flex: 2 100%;
@@ -7102,7 +7127,7 @@ p {
 .upload-preview {
   padding: 20px 20px 0 20px;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 @-webkit-keyframes slideDown {
   from {

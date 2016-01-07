@@ -11,8 +11,8 @@ var app = angular.module('wdonahoeart', [
 	'wdonahoeart.contact'
 ]);
 
-app.constant('API_URL','http://localhost:8080/api')
-// app.constant('API_URL','http://107.170.44.229/api')
+// app.constant('API_URL','http://localhost:8080/api')
+app.constant('API_URL','http://107.170.44.229/api')
 .config(['$urlRouterProvider', '$httpProvider', function($urlRouterProvider, $httpProvider){
 	
 	/* note, you NEED this line for ui-router to work! */
@@ -65,6 +65,7 @@ app.constant('API_URL','http://localhost:8080/api')
 
 }])
 .controller('AppCtrl', ['$scope', '$state', 'jwtAuthFactory', '$location', '$rootScope', function($scope, $state, jwtAuthFactory, $location, $rootScope){
+	$scope.copyright = new Date();
 
 	this.isAuthed = function(){
 		return jwtAuthFactory.isAuthed();
