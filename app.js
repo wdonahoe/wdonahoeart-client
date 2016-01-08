@@ -13,12 +13,14 @@ var app = angular.module('wdonahoeart', [
 
 // app.constant('API_URL','http://localhost:8080/api')
 app.constant('API_URL','http://107.170.44.229/api')
-.config(['$urlRouterProvider', '$httpProvider', function($urlRouterProvider, $httpProvider){
+.config(['$urlRouterProvider', '$httpProvider', '$locationProvider', function($urlRouterProvider, $httpProvider, $locationProvider){
 	
 	/* note, you NEED this line for ui-router to work! */
 	$urlRouterProvider.otherwise('/');
 	
 	$httpProvider.interceptors.push('jwtAuthInterceptor');
+
+	$locationProvider.html5Mode(true);
 
 }])
 .filter('trusted', ['$sce', function($sce){
